@@ -1,0 +1,19 @@
+.primary-black {
+  width: 164px;
+  height: 49px;
+
+  background: #000000;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 0;
+  color: white;
+  border: none;
+}
+
+.base-btn {
+  padding: 10px 20px;
+  transition: transform 0.3s, top 0.3s, left 0.3s;
+}
+
+.base-btn:hover {
+  transform: scale(1.1);
+}

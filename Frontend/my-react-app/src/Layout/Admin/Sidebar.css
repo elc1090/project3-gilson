@@ -1,0 +1,67 @@
+.sidebar {
+  position: relative;
+  width: 255px;
+  height: 100vh;
+  width: 255px;
+  background: #FFFFFF;
+  box-shadow: 5px 4px 20px 2px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  padding-right: 0;
+  font-family: "Raleway";
+  font-style: normal;
+  font-size: 20px;
+  z-index: 9999;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  min-height: 10%;
+}
+
+.list-item {
+  margin-top: 30px;
+  transition: box-shadow 0.3s ease-in-out;
+  
+  padding: 10px;
+  padding-left: 25px;
+}
+
+.list-item.selected {
+  box-shadow: -1px 2px 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.list-item:hover {
+  box-shadow: -1px 2px 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.list-container {
+  width: 100%;
+  height: fit-content;
+}
+
+.item-icon {
+  margin-right: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #000000;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("../../../public/fonts/Raleway/static/Raleway-Medium.ttf") format("truetype");
+}

@@ -1,0 +1,15 @@
+[
+    {
+      "id": 1,
+      "title": "Dashboard",
+      "link": "/dashboard/user",
+      "icon": "fas fa-home"
+    },
+    {
+      "id": 2,
+      "title": "Psicólogos",
+      "link": "/psychologists",
+      "icon": "fas fa-people-group"
+    }
+  ]
+  
