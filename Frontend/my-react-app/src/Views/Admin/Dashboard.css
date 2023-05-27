@@ -1,0 +1,69 @@
+.dashboard-header {
+  position: relative;
+  max-height: 196px;
+  display: flex;
+  flex-direction: column;
+  font-size: 36px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  padding: 1em;
+  padding-left: 4em;
+  background-color: white;
+  box-shadow: 0 4px 6px 1px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.header-title {
+  margin-top: 2em;
+}
+
+.header-subtitle {
+  opacity: 0;
+  margin-top: 0.5em;
+  animation-delay: 0.3s;
+}
+
+.text-enter {
+  opacity: 0;
+  animation: text-in 1s ease forwards;
+}
+
+.text-leave {
+  animation: container-out 0.5s ease forwards;
+}
+
+.page-icon {
+    margin-right: 30px;
+}
+
+@keyframes text-in {
+  from {
+    opacity: 0;
+    transform: translateX(3em);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes container-in {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes container-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
