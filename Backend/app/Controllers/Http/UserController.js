@@ -1,20 +1,28 @@
-"use strict";
+'use strict'
+
+const User = use('App/Models/User')
 
 class UserController {
-  async login({ request, auth }) {
+  async login({ request, auth, response }) {
     const { email, password } = request.all();
-    await auth.attempt(email, password);
+    try {
+      const token = await auth.attempt(email, password);
 
-    return "Logged in successfully";
+      const user = await User.findByOrFail('email', email)
+
+      return response.json({ auth: token, roles: user.role, success: true });
+    } catch (error) {
+      return response.status(401).json({ message: 'Usuário ou senha inválidos' });
+    }
   }
 
   show({ auth, params }) {
     if (auth.user.id !== Number(params.id)) {
-      return "You cannot see someone else's profile";
+      return "You cannot see someone else's profile"
     }
-    
-    return auth.user;
+
+    return auth.user
   }
 }
 
-module.exports = UserController;
+module.exports = UserController

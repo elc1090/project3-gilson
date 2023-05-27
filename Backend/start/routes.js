@@ -18,7 +18,7 @@ const Route = use("Route");
 
 Route.on("/").render("welcome");
 
-Route.get("users/:id", "UserController.show").middleware("auth");
+Route.get("users/:id", "UserController.show");
 Route.post("login", "UserController.login");
 
 Route.get('/pathologies', 'PathologyController.index');

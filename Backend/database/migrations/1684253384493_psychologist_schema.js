@@ -10,7 +10,7 @@ class PsychologistSchema extends Schema {
       table
         .integer("user_id")
         .unsigned()
-        .references("user_id")
+        .references("id")
         .inTable("users")
         .onDelete("CASCADE");
       table.string("cpf", 20).notNullable();
