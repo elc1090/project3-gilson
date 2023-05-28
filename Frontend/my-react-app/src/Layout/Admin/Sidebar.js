@@ -1,30 +1,38 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import menuData from './menu.json';
-import './Sidebar.css';
+import React, { useState } from "react";
+import menuData from "./menu.json";
+import { useNavigate } from "react-router-dom";
+import "./Sidebar.css";
 
 const Sidebar = () => {
-  const [selectedItem, setSelectedItem] = useState(1);
+  const currentPath = window.location.pathname;
+  const pathSegments = currentPath.split("/");
+  const role = pathSegments[2];
+  const [selectedItem, setSelectedItem] = useState(role);
 
-  const handleItemClick = (itemId) => {
-    setSelectedItem(itemId);
+  const navigate = useNavigate();
+
+  const handleItemClick = (link, role) => {
+    setSelectedItem(role);
+    navigate(link);
   };
 
   return (
     <div className="sidebar">
-      <div className="logo-container"><span>Logo</span></div>
-      <div className='list-container'>
+      <div className="logo-container">
+        <span>Logo</span>
+      </div>
+      <div className="list-container">
         <ul className="menu">
           {menuData.map((item) => (
             <li
-              className={`list-item ${item.id === selectedItem ? 'selected' : ''}`}
+              className={`list-item ${
+                item.role === selectedItem ? "selected" : ""
+              }`}
               key={item.id}
-              onClick={() => handleItemClick(item.id)}
+              onClick={() => handleItemClick(item.link, item.role)}
             >
-              <Link to={item.link}>
-                <i className={`item-icon ${item.icon}`} />
-                <span>{item.title}</span>
-              </Link>
+              <i className={`item-icon ${item.icon}`} />
+              <span>{item.title}</span>
             </li>
           ))}
         </ul>

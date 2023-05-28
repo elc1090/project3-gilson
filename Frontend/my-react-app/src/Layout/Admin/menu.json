@@ -2,14 +2,16 @@
     {
       "id": 1,
       "title": "Dashboard",
-      "link": "/dashboard/user",
-      "icon": "fas fa-home"
+      "link": "/user/dashboard",
+      "icon": "fas fa-home",
+      "role": "dashboard"
     },
     {
       "id": 2,
       "title": "Psicólogos",
-      "link": "/psychologists",
-      "icon": "fas fa-people-group"
+      "link": "/user/psychologists",
+      "icon": "fas fa-people-group",
+      "role": "psychologists"
     }
   ]
   

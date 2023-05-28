@@ -1,7 +1,8 @@
 .sidebar {
-  position: relative;
+  position: fixed;
   width: 255px;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   width: 255px;
   background: #FFFFFF;
   box-shadow: 5px 4px 20px 2px rgba(0, 0, 0, 0.1);
@@ -27,6 +28,7 @@
   
   padding: 10px;
   padding-left: 25px;
+  cursor: pointer;
 }
 
 .list-item.selected {

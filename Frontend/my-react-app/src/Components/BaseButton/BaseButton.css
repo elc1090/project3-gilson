@@ -1,5 +1,5 @@
 .primary-black {
-  width: 164px;
+  min-width: 164px;
   height: 49px;
 
   background: #000000;

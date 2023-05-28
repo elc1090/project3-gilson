@@ -15,6 +15,7 @@ class PsychologistSchema extends Schema {
         .onDelete("CASCADE");
       table.string("cpf", 20).notNullable();
       table.string("crp", 40).notNullable();
+      table.string("name", 255).notNullable();
       table.timestamps();
     });
   }

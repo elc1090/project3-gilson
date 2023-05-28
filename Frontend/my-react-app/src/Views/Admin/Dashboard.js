@@ -1,29 +1,25 @@
-import React from 'react';
-import DashboardLayout from '../../Layout/Admin/DashboardLayout';
-import "./Dashboard.css"
-import { useState } from 'react';
+import React from "react";
+import DashboardLayout from "../../Layout/Admin/DashboardLayout";
+import "./Dashboard.css";
+import { useState } from "react";
 
 const DashboardAdmin = () => {
-    const [changingHeader, setChangingHeader] = useState(false);
+  const [changingHeader, setChangingHeader] = useState(false);
 
-    function getHeaderTextClass() {
-        if (changingHeader) return "text-leave";
-        else return "text-enter";
-    }
+  function getHeaderTextClass() {
+    if (changingHeader) return "text-leave";
+    else return "text-enter";
+  }
 
-    return (
-        <DashboardLayout>
-            <header className="dashboard-header">
-                <div className="d-flex inline-block row">
-                    <h1 className={`header-title ${getHeaderTextClass()}`}>
-                       <i className='fas fa-home page-icon' /> <span>Dashboard</span>
-                    </h1>
-                </div>
-                
-            </header>
-            {/* Adicione outros componentes e conteúdos da Dashboard aqui */}
-        </DashboardLayout>
-    );
+  return (
+    <header className="dashboard-header">
+      <div className="d-flex inline-block row">
+        <h1 className={`header-title ${getHeaderTextClass()}`}>
+          <i className="fas fa-home page-icon" /> <span>Dashboard</span>
+        </h1>
+      </div>
+    </header>
+  );
 };
 
 export default DashboardAdmin;

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import "./Login.css";
 //import "bootstrap/dist/css/bootstrap.min.css";
 //import "@fortawesome/fontawesome-free/css/all.css";
@@ -42,7 +41,7 @@ function Login() {
         console.log("Login bem-sucedido");
         login(data.auth.token, data.roles);
 
-        navigate(`/dashboard/${data.roles}`);
+        navigate(`/${data.roles}/dashboard`);
       }
 
     } catch (error) {

@@ -17,9 +17,15 @@
 const Route = use("Route");
 
 Route.on("/").render("welcome");
-
-Route.get("users/:id", "UserController.show");
 Route.post("login", "UserController.login");
+
+Route.group(() => {
+    Route.resource("psychologists", "Admin/PsychologistController").apiOnly();
+    //Route.resource("pathologies", "Admin/PathologyController").apiOnly();
+    //Route.resource("patients", "Admin/PatientController").apiOnly();
+    //Route.resource("diagnoses", "Admin/DiagnosisController").apiOnly();
+    //Route.resource("demands", "Admin/DemandController").apiOnly();
+}).prefix("users");
 
 Route.get('/pathologies', 'PathologyController.index');
 Route.post('/pathologies', 'PathologyController.store');

@@ -1,6 +1,6 @@
-import React from 'react';
-import Sidebar from './Sidebar';
-import './DashboardLayout.css';
+import React from "react";
+import Sidebar from "./Sidebar";
+import "./DashboardLayout.css";
 
 const Layout = ({ children }) => {
   return (

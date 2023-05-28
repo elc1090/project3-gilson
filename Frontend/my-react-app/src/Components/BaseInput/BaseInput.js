@@ -1,7 +1,15 @@
 import React from "react";
 import "./BaseInput.css";
 
-function BaseInput({ placeholder, value, setValue, label, labelType, type }) {
+function BaseInput({
+  placeholder,
+  value,
+  setValue,
+  label,
+  labelType,
+  type,
+  icon,
+}) {
   const handleInputChange = (event) => {
     setValue(event.target.value);
   };
@@ -15,7 +23,7 @@ function BaseInput({ placeholder, value, setValue, label, labelType, type }) {
   }
 
   function isInsideLabel() {
-    if (label && labelType === "insideLabel") {
+    if ((label || icon) && labelType === "insideLabel") {
       return true;
     }
 
@@ -29,10 +37,10 @@ function BaseInput({ placeholder, value, setValue, label, labelType, type }) {
           <label htmlFor="inputTitle">{label}</label>
         ) : (
           isInsideLabel() &&
-          label &&
+          (label || icon) &&
           labelType === "insideLabel" && (
             <span className="inside-label">
-              <label htmlFor="inputTitle">{label}</label>
+              <i className={icon}></i> {label}
             </span>
           )
         )}

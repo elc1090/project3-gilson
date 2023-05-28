@@ -1,0 +1,57 @@
+.psychologist-container {
+  display: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.page-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  padding: 2em;
+}
+
+.profiles-container {
+  display: flex;
+  width: 100%;
+}
+
+.button-icon {
+  margin-right: 20px;
+}
+
+.empty-page {
+  font-size: calc(2em);
+  font-weight: bolder;
+  margin-top: 20%;
+  color: rgba(0, 0, 0, 0.397);
+  text-align: center;
+}
+
+.psychologist-card {
+  display: flex;
+  justify-content: center;
+  width: 85%;
+  height: 250px;
+  background-color: #000000;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  transition: transform 0.3s, top 0.3s, left 0.3s;
+}
+
+.psychologist-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.profile-img {
+  height: 125px;
+  width: 125px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.btn-container {
+  margin-bottom: 3em;
+}
