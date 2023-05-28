@@ -1,12 +1,16 @@
 import React from "react";
 import "./index.css";
 import Login from "./Views/Login";
-import DashboardLayout from "./Layout/Admin/DashboardLayout";
+
+import AdminLayout from "./Layout/Admin/DashboardLayout";
 import DashboardAdmin from "./Views/Admin/Dashboard";
 import PsychologistsView from "./Views/Admin/Psychologists/PsychologistsView";
 import PsychologistsForm from "./Views/Admin/Psychologists/PsychologistsForm";
 
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import PsychologistLayout from "./Layout/Psychologist/DashboardLayout";
+import DashboardPsychologist from "./Views/Psychologist/Dashboard";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const App = () => {
@@ -18,31 +22,44 @@ const App = () => {
           <CSSTransition key={"location.key"} classNames="fade" timeout={300}>
             <Routes>
               <Route exact path="/" element={<Login />} />
+
+              {/* USER ROUTES */}
               <Route
                 exact
                 path="/user/dashboard"
                 element={
-                  <DashboardLayout>
+                  <AdminLayout>
                     <DashboardAdmin />
-                  </DashboardLayout>
+                  </AdminLayout>
                 }
               />
               <Route
                 exact
                 path="/user/psychologists"
                 element={
-                  <DashboardLayout>
+                  <AdminLayout>
                     <PsychologistsView />
-                  </DashboardLayout>
+                  </AdminLayout>
                 }
               />
               <Route
                 exact
                 path="/user/psychologists/new"
                 element={
-                  <DashboardLayout>
+                  <AdminLayout>
                     <PsychologistsForm />
-                  </DashboardLayout>
+                  </AdminLayout>
+                }
+              />
+
+              {/* PSYCHOLOGIST ROUTES */}
+              <Route
+                exact
+                path="/psychologist/dashboard"
+                element={
+                  <PsychologistLayout>
+                    <DashboardPsychologist />
+                  </PsychologistLayout>
                 }
               />
             </Routes>

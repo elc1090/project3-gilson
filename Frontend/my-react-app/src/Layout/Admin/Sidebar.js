@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import menuData from "./menu.json";
 import { useNavigate } from "react-router-dom";
+import BaseButton from "../../Components/BaseButton/BaseButton";
 import "./Sidebar.css";
 
 const Sidebar = () => {
@@ -16,18 +17,26 @@ const Sidebar = () => {
     navigate(link);
   };
 
+  function logout() {
+    localStorage.clear();
+    navigate("/");
+  }
+
   return (
     <div className="sidebar">
       <div className="logo-container">
-        <span>Logo</span>
+        <img
+          className={`logo-image mt-3 `}
+          alt="Logo"
+          src={"/logo-vertical-sem-fundo-xl.png"}
+        ></img>
       </div>
       <div className="list-container">
         <ul className="menu">
           {menuData.map((item) => (
             <li
-              className={`list-item ${
-                item.role === selectedItem ? "selected" : ""
-              }`}
+              className={`list-item ${item.role === selectedItem ? "selected" : ""
+                }`}
               key={item.id}
               onClick={() => handleItemClick(item.link, item.role)}
             >
@@ -36,6 +45,14 @@ const Sidebar = () => {
             </li>
           ))}
         </ul>
+      </div>
+      <div className="logout-container">
+        <BaseButton
+          type="primary-black"
+          onClick={logout}
+        >
+          <i className="item-icon fas fa-right-from-bracket"></i> Sair
+        </BaseButton>
       </div>
     </div>
   );

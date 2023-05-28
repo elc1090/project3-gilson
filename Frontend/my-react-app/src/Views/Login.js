@@ -47,14 +47,20 @@ function Login() {
     } catch (error) {
       setErrorMessage(error.response.data.message);
       setActive(true);
-      
+
       console.error("Erro na requisição", error.response);
     }
   }
 
   return (
     <div className="Login">
-      <header className="Login-header"></header>
+      <div className="brand-container">
+        <img
+          className={`brand-image mt-3 `}
+          alt="Logo"
+          src={"/logo-horizontal-sem-fundo.png"}
+        ></img>
+      </div>
 
       <div className="Login-body">
         <div className="d-flex justify-content-center">

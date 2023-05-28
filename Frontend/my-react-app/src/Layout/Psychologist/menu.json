@@ -1,0 +1,31 @@
+[
+    {
+      "id": 1,
+      "title": "Dashboard",
+      "link": "/psychologist/dashboard",
+      "icon": "fas fa-home",
+      "role": "dashboard"
+    },
+    {
+      "id": 2,
+      "title": "Pacientes",
+      "link": "/pasychologist/pacients",
+      "icon": "fas fa-people-group",
+      "role": "pacients"
+    },
+    {
+      "id": 3,
+      "title": "Sessões",
+      "link": "/pasychologist/sessions",
+      "icon": "fas fa-clipboard-list",
+      "role": "sessions"
+    },
+    {
+      "id": 4,
+      "title": "Patologias",
+      "link": "/pasychologist/pathologies",
+      "icon": "fas fa-brain",
+      "role": "pathologies"
+    }
+  ]
+  
