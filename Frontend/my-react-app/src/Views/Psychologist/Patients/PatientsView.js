@@ -1,8 +1,8 @@
 import React from "react";
-import "./Dashboard.css";
+import "./PatientsView.css";
 import { useState } from "react";
 
-const DashboardAdmin = () => {
+const PatientsView = () => {
   const [changingHeader] = useState(false);
 
   function getHeaderTextClass() {
@@ -14,11 +14,11 @@ const DashboardAdmin = () => {
     <header className="dashboard-header">
       <div className="d-flex inline-block row">
         <h1 className={`header-title ${getHeaderTextClass()}`}>
-          <i className="fas fa-home page-icon" /> <span>Dashboard</span>
+          <i className="fas fa-people-group page-icon" /> <span>Pacientes</span>
         </h1>
       </div>
     </header>
   );
 };
 
-export default DashboardAdmin;
+export default PatientsView;

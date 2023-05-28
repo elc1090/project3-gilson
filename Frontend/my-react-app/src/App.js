@@ -9,6 +9,9 @@ import PsychologistsForm from "./Views/Admin/Psychologists/PsychologistsForm";
 
 import PsychologistLayout from "./Layout/Psychologist/DashboardLayout";
 import DashboardPsychologist from "./Views/Psychologist/Dashboard";
+import PathologiesView from "./Views/Psychologist/Pathologies/PathologiesView";
+import PatientsView from "./Views/Psychologist/Patients/PatientsView";
+import SessionsView from "./Views/Psychologist/Sessions/SessionsView";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -59,6 +62,33 @@ const App = () => {
                 element={
                   <PsychologistLayout>
                     <DashboardPsychologist />
+                  </PsychologistLayout>
+                }
+              />
+              <Route
+                exact
+                path="/psychologist/pathologies"
+                element={
+                  <PsychologistLayout>
+                    <PathologiesView />
+                  </PsychologistLayout>
+                }
+              />
+              <Route
+                exact
+                path="/psychologist/patients"
+                element={
+                  <PsychologistLayout>
+                    <PatientsView />
+                  </PsychologistLayout>
+                }
+              />
+              <Route
+                exact
+                path="/psychologist/sessions"
+                element={
+                  <PsychologistLayout>
+                    <SessionsView />
                   </PsychologistLayout>
                 }
               />
