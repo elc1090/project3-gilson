@@ -22,6 +22,7 @@ jobs:
           node-version: '18.x'
 
       - name: npm install, build, and test
+        working-directory: ./backend
         run: |
           npm install
           npm run build --if-present
@@ -53,4 +54,4 @@ jobs:
           app-name: 'terapiabr'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_121E53566FA2420291BD631A3105FA90 }}
-          package: ./backend
+          package: .
