@@ -53,4 +53,4 @@ jobs:
           app-name: 'terapiaon'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_121E53566FA2420291BD631A3105FA90 }}
-          package: .
+          package: backend
