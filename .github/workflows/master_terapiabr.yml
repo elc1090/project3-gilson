@@ -26,6 +26,11 @@ jobs:
         run: |
           npm install
           npm run build --if-present
+      - name: Run migrations
+        run: adonis migration:run --force
+
+      - name: Run seeds
+        run: adonis seed --force
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
