@@ -26,12 +26,6 @@ jobs:
         run: |
           npm install
           npm run build --if-present
-          
-      - name: Run migrations
-        run: node ace migration:run --force
-
-      - name: Run seeds
-        run: node ace seed --force
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
