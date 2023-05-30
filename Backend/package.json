@@ -5,7 +5,8 @@
   "description": "The fullstack application boilerplate for Adonisjs",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "start:prod": "node server.js"
   },
   "keywords": [
     "adonisjs",
