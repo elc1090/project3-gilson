@@ -9,7 +9,7 @@ Este é um sistema web de gerenciamento de clientes e consultas para Psicólogos
 
 #### Deploy
 
-Preencha aqui a URL para acesso ao site publicado
+[Visitar Terapia](https://master--gleeful-kheer-e47b07.netlify.app/)
 
 
 #### Desenvolvedor(es)
