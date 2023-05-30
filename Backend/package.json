@@ -5,8 +5,8 @@
   "description": "The fullstack application boilerplate for Adonisjs",
   "main": "index.js",
   "scripts": {
-    "build": "node ace build --prod",
-    "start": "node ace serve --watch",
+    "build": "npm run build",
+    "start": "npm start --watch",
     "start:prod": "node ./build/server.js"
   },
   "keywords": [
