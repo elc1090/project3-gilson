@@ -1,15 +1,16 @@
 'use strict'
 
-import Application from '@ioc:Adonis/Core/Application'
-
-import Url from "url-parse"
-const CLEARDB_DATABASE_URL = new Url(Env.get("CLEARDB_DATABASE_URL"))
-
 /** @type {import('@adonisjs/framework/src/Env')} */
 const Env = use('Env')
 
 /** @type {import('@adonisjs/ignitor/src/Helpers')} */
 const Helpers = use('Helpers')
+
+/** @type {import('url-parse')} */
+const Url = use('url-parse');
+
+const CLEARDB_DATABASE_URL = new Url(Env.get('CLEARDB_DATABASE_URL'));
+
 
 module.exports = {
   /*
@@ -21,7 +22,7 @@ module.exports = {
   | interacting with SQL databases.
   |
   */
-  connection: Application.inDev ? "mysql" : "mysql", 
+  connection: "mysql", 
 
   /*
   |--------------------------------------------------------------------------
