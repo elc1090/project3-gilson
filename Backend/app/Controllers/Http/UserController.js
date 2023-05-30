@@ -12,6 +12,7 @@ class UserController {
 
       return response.json({ auth: token, roles: user.role, success: true });
     } catch (error) {
+      console.log(error)
       return response.status(401).json({ message: 'Usuário ou senha inválidos' });
     }
   }

@@ -11,7 +11,6 @@ const Url = use('url-parse');
 
 const CLEARDB_DATABASE_URL = new Url(Env.get('CLEARDB_DATABASE_URL'));
 
-
 module.exports = {
   /*
   |--------------------------------------------------------------------------
@@ -22,7 +21,7 @@ module.exports = {
   | interacting with SQL databases.
   |
   */
-  connection: "mysql", 
+  connection: "mysql",
 
   /*
   |--------------------------------------------------------------------------
@@ -53,30 +52,27 @@ module.exports = {
   | npm i --save mysql
   |
   */
-  mysql: {
-    client: 'mysql',
-    connection: {
-      host: CLEARDB_DATABASE_URL.host,
-      port: '',
-      user: CLEARDB_DATABASE_URL.username,
-      password: CLEARDB_DATABASE_URL.password,
-      database: CLEARDB_DATABASE_URL.pathname.substr(1)
-    },
-    healthCheck: false
-  },
+};
 
-  /*
-  |--------------------------------------------------------------------------
-  | PostgreSQL
-  |--------------------------------------------------------------------------
-  |
-  | Here we define connection settings for PostgreSQL database.
-  |
-  | npm i --save pg
-  |
-  */
-  pg: {
-    client: 'pg',
+// Verifica se está em produção
+if (Env.get('NODE_ENV') === 'production') {
+  module.exports.mysql = {
+    mysql: {
+      client: 'mysql',
+      connection: {
+        host: CLEARDB_DATABASE_URL.host,
+        port: '',
+        user: CLEARDB_DATABASE_URL.username,
+        password: CLEARDB_DATABASE_URL.password,
+        database: CLEARDB_DATABASE_URL.pathname.substr(1)
+      },
+      healthCheck: false
+    },
+  };
+} else {
+  // Configuração para desenvolvimento local
+  module.exports.mysql = {
+    client: 'mysql',
     connection: {
       host: Env.get('DB_HOST', 'localhost'),
       port: Env.get('DB_PORT', ''),
@@ -84,5 +80,26 @@ module.exports = {
       password: Env.get('DB_PASSWORD', ''),
       database: Env.get('DB_DATABASE', 'adonis')
     }
-  }
+  };
 }
+
+/*
+|--------------------------------------------------------------------------
+| PostgreSQL
+|--------------------------------------------------------------------------
+|
+| Here we define connection settings for PostgreSQL database.
+|
+| npm i --save pg
+|
+*/
+module.exports.pg = {
+  client: 'pg',
+  connection: {
+    host: Env.get('DB_HOST', 'localhost'),
+    port: Env.get('DB_PORT', ''),
+    user: Env.get('DB_USER', 'root'),
+    password: Env.get('DB_PASSWORD', ''),
+    database: Env.get('DB_DATABASE', 'adonis')
+  }
+};
