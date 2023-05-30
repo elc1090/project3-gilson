@@ -30,7 +30,8 @@
     "axios": "^1.4.0",
     "cors": "^2.8.5",
     "mysql": "^2.18.1",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "url-parse": "^1.5.10"
   },
   "autoload": {
     "App": "./app"
