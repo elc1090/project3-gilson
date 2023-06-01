@@ -56,6 +56,7 @@ module.exports = {
 
 // Verifica se está em produção
 if (Env.get('NODE_ENV') === 'production') {
+  
   module.exports.mysql = {
     mysql: {
       client: 'mysql',
@@ -68,6 +69,7 @@ if (Env.get('NODE_ENV') === 'production') {
       },
       healthCheck: false
     },
+    
   };
 } else {
   // Configuração para desenvolvimento local
