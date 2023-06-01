@@ -65,7 +65,7 @@ module.exports = {
   },
 };
 
-
+/*
 // Verifica se está em produção
 if (Env.get('NODE_ENV') === 'production') {
   
@@ -83,7 +83,7 @@ if (Env.get('NODE_ENV') === 'production') {
     },
     
   };
-} else {
+} else if (Env.get('NODE_ENV') === 'development'){
   // Configuração para desenvolvimento local
   module.exports.mysql = {
     client: 'mysql',
@@ -95,7 +95,7 @@ if (Env.get('NODE_ENV') === 'production') {
       database: Env.get('DB_DATABASE', 'adonis')
     }
   };
-}
+}*/
 
 /*
 |--------------------------------------------------------------------------
