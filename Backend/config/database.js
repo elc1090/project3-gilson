@@ -52,6 +52,7 @@ module.exports = {
   | npm i --save mysql
   |
   */
+ /*
   mysql: {
     client: 'mysql',
     connection: {
@@ -62,14 +63,14 @@ module.exports = {
       database: CLEARDB_DATABASE_URL.pathname.substr(1)
     },
     healthCheck: false
-  },
+  },*/
 };
 
-/*
+
 // Verifica se está em produção
 if (Env.get('NODE_ENV') === 'production') {
-  
-  module.exports.mysql = {
+  module.exports = {
+    connection: 'mysql',
     mysql: {
       client: 'mysql',
       connection: {
@@ -80,22 +81,24 @@ if (Env.get('NODE_ENV') === 'production') {
         database: CLEARDB_DATABASE_URL.pathname.substr(1)
       },
       healthCheck: false
-    },
-    
-  };
-} else if (Env.get('NODE_ENV') === 'development'){
-  // Configuração para desenvolvimento local
-  module.exports.mysql = {
-    client: 'mysql',
-    connection: {
-      host: Env.get('DB_HOST', 'localhost'),
-      port: Env.get('DB_PORT', ''),
-      user: Env.get('DB_USER', 'root'),
-      password: Env.get('DB_PASSWORD', ''),
-      database: Env.get('DB_DATABASE', 'adonis')
     }
   };
-}*/
+} else if (Env.get('NODE_ENV') === 'development') {
+  // Configuração para desenvolvimento local
+  module.exports = {
+    connection: 'mysql',
+    mysql: {
+      client: 'mysql',
+      connection: {
+        host: Env.get('DB_HOST', 'localhost'),
+        port: Env.get('DB_PORT', ''),
+        user: Env.get('DB_USER', 'root'),
+        password: Env.get('DB_PASSWORD', ''),
+        database: Env.get('DB_DATABASE', 'adonis')
+      }
+    }
+  };
+}
 
 /*
 |--------------------------------------------------------------------------
