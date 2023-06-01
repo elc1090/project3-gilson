@@ -52,7 +52,19 @@ module.exports = {
   | npm i --save mysql
   |
   */
+  mysql: {
+    client: 'mysql',
+    connection: {
+      host: CLEARDB_DATABASE_URL.host,
+      port: '',
+      user: CLEARDB_DATABASE_URL.username,
+      password: CLEARDB_DATABASE_URL.password,
+      database: CLEARDB_DATABASE_URL.pathname.substr(1)
+    },
+    healthCheck: false
+  },
 };
+
 
 // Verifica se está em produção
 if (Env.get('NODE_ENV') === 'production') {
