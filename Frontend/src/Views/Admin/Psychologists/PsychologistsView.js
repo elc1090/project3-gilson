@@ -25,12 +25,13 @@ const PsychologistsView = () => {
       const {data} = await api.get('users/psychologists');
       const psychologistsData = data.psychologists;
       setPsychologists([...psychologistsData]);
-      console.log(psychologistsData);
     } catch (error) {
       console.log(error.response.data.message);
       console.error('Erro na requisição', error.response);
     }
   }
+
+  console.log(psychologists);
 
   function getHeaderTextClass() {
     if (changingHeader) return 'text-leave';
@@ -63,7 +64,7 @@ const PsychologistsView = () => {
           </div>
         </div>
         <div className="row">
-          {psychologists.length > 0 ? (
+          {psychologists?.length ? (
             psychologists.map((psychologist) => {
               return (
                 <div
