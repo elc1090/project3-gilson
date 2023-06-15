@@ -1,13 +1,13 @@
-import React from "react";
-import "./PsychologistsView.css";
-import "../../PageHeader.css";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import './PsychologistsView.css';
+import '../../PageHeader.css';
+import {useState} from 'react';
+import {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 
-import BaseButton from "../../../Components/BaseButton/BaseButton";
+import BaseButton from '../../../Components/BaseButton/BaseButton';
 
-import api from "../../../Services/api";
+import api from '../../../Services/api';
 
 const PsychologistsView = () => {
   const navigate = useNavigate();
@@ -22,19 +22,19 @@ const PsychologistsView = () => {
 
   async function loadPsychologists() {
     try {
-      const { data } = await api.get("users/psychologists");
+      const {data} = await api.get('users/psychologists');
       const psychologistsData = data.psychologists;
       setPsychologists([...psychologistsData]);
       console.log(psychologistsData);
     } catch (error) {
       console.log(error.response.data.message);
-      console.error("Erro na requisição", error.response);
+      console.error('Erro na requisição', error.response);
     }
   }
 
   function getHeaderTextClass() {
-    if (changingHeader) return "text-leave";
-    else return "text-enter";
+    if (changingHeader) return 'text-leave';
+    else return 'text-enter';
   }
 
   function navigateToCreatePsychologist() {
@@ -45,7 +45,7 @@ const PsychologistsView = () => {
       <header className="page-header">
         <div className="d-flex inline-block row">
           <h1 className={`header-title ${getHeaderTextClass()}`}>
-            <i className="fas fa-people-group page-icon" />{" "}
+            <i className="fas fa-people-group page-icon" />{' '}
             <span>Psicólogos</span>
           </h1>
         </div>
@@ -75,7 +75,7 @@ const PsychologistsView = () => {
                       <img
                         className={`profile-img mt-3 `}
                         alt="Foto de Perfil do Psicólogo"
-                        src={"/user-profile.png"}
+                        src={'/user-profile.png'}
                       ></img>
                     </div>
                     <div className="d-flex col-12 align-items-center flex-column text-white mb-3">

@@ -1,28 +1,28 @@
-import React from "react";
-import "./index.css";
-import Login from "./Views/Login";
+import React from 'react';
+import './index.css';
+import Login from './Views/Login';
 
-import AdminLayout from "./Layout/Admin/DashboardLayout";
-import DashboardAdmin from "./Views/Admin/Dashboard";
-import PsychologistsView from "./Views/Admin/Psychologists/PsychologistsView";
-import PsychologistsForm from "./Views/Admin/Psychologists/PsychologistsForm";
+import AdminLayout from './Layout/Admin/DashboardLayout';
+import DashboardAdmin from './Views/Admin/Dashboard';
+import PsychologistsView from './Views/Admin/Psychologists/PsychologistsView';
+import PsychologistsForm from './Views/Admin/Psychologists/PsychologistsForm';
 
-import PsychologistLayout from "./Layout/Psychologist/DashboardLayout";
-import DashboardPsychologist from "./Views/Psychologist/Dashboard";
-import PathologiesView from "./Views/Psychologist/Pathologies/PathologiesView";
-import PatientsView from "./Views/Psychologist/Patients/PatientsView";
-import SessionsView from "./Views/Psychologist/Sessions/SessionsView";
+import PsychologistLayout from './Layout/Psychologist/DashboardLayout';
+import DashboardPsychologist from './Views/Psychologist/Dashboard';
+import PathologiesView from './Views/Psychologist/Pathologies/PathologiesView';
+import PatientsView from './Views/Psychologist/Patients/PatientsView';
+import SessionsView from './Views/Psychologist/Sessions/SessionsView';
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 const App = () => {
-  //const location = useLocation();
+  // const location = useLocation();
   return (
     <React.StrictMode>
       <BrowserRouter>
         <TransitionGroup>
-          <CSSTransition key={"location.key"} classNames="fade" timeout={300}>
+          <CSSTransition key={'location.key'} classNames="fade" timeout={300}>
             <Routes>
               <Route exact path="/" element={<Login />} />
 

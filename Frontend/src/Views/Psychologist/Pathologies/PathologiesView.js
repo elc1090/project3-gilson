@@ -1,13 +1,13 @@
-import React from "react";
-import "./PathologiesView.css";
-import { useState } from "react";
+import React from 'react';
+import './PathologiesView.css';
+import {useState} from 'react';
 
 const PathologiesView = () => {
   const [changingHeader] = useState(false);
 
   function getHeaderTextClass() {
-    if (changingHeader) return "text-leave";
-    else return "text-enter";
+    if (changingHeader) return 'text-leave';
+    else return 'text-enter';
   }
 
   return (

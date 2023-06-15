@@ -1,13 +1,13 @@
-import React from "react";
-import "./SessionsView.css";
-import { useState } from "react";
+import React from 'react';
+import './SessionsView.css';
+import {useState} from 'react';
 
 const SessionsView = () => {
   const [changingHeader] = useState(false);
 
   function getHeaderTextClass() {
-    if (changingHeader) return "text-leave";
-    else return "text-enter";
+    if (changingHeader) return 'text-leave';
+    else return 'text-enter';
   }
 
   return (

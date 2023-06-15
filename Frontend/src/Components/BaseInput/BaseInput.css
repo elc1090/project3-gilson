@@ -1,46 +1,46 @@
-.input-wrapper {
-  margin-bottom: 20px;
-}
-
-.input-box {
+.form-group {
   position: relative;
-  display: flex;
-  align-items: center;
+  padding: 15px 0 0;
+  width: 75%;
 }
 
-.inside-label {
-  position: absolute;
-  height: 48px;
-  max-width: 105px;
+.form-field {
+  font-family: inherit;
   width: 100%;
-  left: 5px;
-  background: #ffffff;
-  box-shadow: 3px 0px 4px rgba(0, 0, 0, 0.15);
-
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1.15rem;
+  color: black;
+  padding: 10px 0;
+  background: transparent;
+  transition: border-color 0.2s;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 23px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
-.base-input {
-  background: #ffffff;
-  width: 100%;
-  color: #333;
-  font-size: 16px;
-  padding: 12px;
-  border: 2px solid #000000;
-  border-radius: 0;
+.form-field::placeholder {
+  color: transparent;
 }
 
-.input-container {
-  width: 100%;
-  height: 100%;
+.form-field:focus-within::placeholder,
+.form-field:not(:placeholder-shown)::placeholder {
+  color: transparent;
 }
 
-.inside-label-padding {
-  padding-left: 130px;
+.form-field:focus-within ~ .form-label,
+.form-field:not(:placeholder-shown) ~ .form-label {
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: text;
+  top: 0;
+}
+
+.form-label {
+  position: absolute;
+  top: 30px;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #9b9b9b;
 }

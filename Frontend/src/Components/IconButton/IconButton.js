@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "@fortawesome/fontawesome-free/css/all.css";
-import "./IconButton.css";
+import React, {useState} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.css';
+import './IconButton.css';
 
-function IconButton({ icon, onClick, animation }) {
+function IconButton({icon, onClick, animation}) {
   const [pressed, setPressed] = useState(false);
   const [hovering, setHovering] = useState(false);
   const [justUnhovered, setJustUnhovered] = useState(false);
@@ -34,9 +34,9 @@ function IconButton({ icon, onClick, animation }) {
 
   return (
     <i
-      className={`cursor-pointer ${icon} ${hovering ? "hover" : ""} ${
-        pressed ? "bounce" : ""
-      } ${justUnhovered ? "unhover" : ""}`}
+      className={`cursor-pointer ${icon} ${hovering ? 'hover' : ''} ${
+        pressed ? 'bounce' : ''
+      } ${justUnhovered ? 'unhover' : ''}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onMouseDown={handleMouseDown}

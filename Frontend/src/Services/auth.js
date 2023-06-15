@@ -1,6 +1,6 @@
-export const TOKEN_KEY = "@ucorp-Token";
-export const USER_ROLES = "@user-Roles";
-export const USER_ID = "@user-Id";
+export const TOKEN_KEY = '@ucorp-Token';
+export const USER_ROLES = '@user-Roles';
+export const USER_ID = '@user-Id';
 
 export const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) != null;
 export const hasRole = () => localStorage.getItem(USER_ROLES) != null;
@@ -16,8 +16,9 @@ export const getUserId = () => localStorage.getItem(USER_ID);
 
 export const login = (token, roles) => {
   localStorage.setItem(TOKEN_KEY, token);
-  if (Array.isArray(roles) && roles.length)
+  if (Array.isArray(roles) && roles.length) {
     localStorage.setItem(USER_ROLES, JSON.stringify(roles));
+  }
 };
 
 export const setUserId = (id) => {

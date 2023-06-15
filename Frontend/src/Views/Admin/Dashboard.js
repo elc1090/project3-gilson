@@ -1,13 +1,13 @@
-import React from "react";
-import "./Dashboard.css";
-import { useState } from "react";
+import React from 'react';
+import './Dashboard.css';
+import {useState} from 'react';
 
 const DashboardAdmin = () => {
   const [changingHeader, setChangingHeader] = useState(false);
 
   function getHeaderTextClass() {
-    if (changingHeader) return "text-leave";
-    else return "text-enter";
+    if (changingHeader) return 'text-leave';
+    else return 'text-enter';
   }
 
   return (
