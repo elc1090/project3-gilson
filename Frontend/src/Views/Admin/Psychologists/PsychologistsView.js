@@ -15,25 +15,24 @@ const PsychologistsView = () => {
   const [psychologists, setPsychologists] = useState([]);
 
   useEffect(() => {
-    return () => {
-      loadPsychologists();
-      console.log(psychologists);
+    const loadPsychologists = async () => {
+      try {
+        const { data } = await api.get('users/psychologists');
+        const psychologistsData = data.psychologists;
+        setPsychologists(psychologistsData);
+      } catch (error) {
+        console.log(error.response.data.message);
+        console.error('Erro na requisição', error.response);
+      }
     };
+  
+    const fetchData = async () => {
+      await loadPsychologists();
+    };
+  
+    fetchData();
   }, []);
-
-  async function loadPsychologists() {
-    try {
-      const {data} = await api.get('users/psychologists');
-      const psychologistsData = data.psychologists;
-      setPsychologists([...psychologistsData]);
-    } catch (error) {
-      console.log(error.response.data.message);
-      console.error('Erro na requisição', error.response);
-    }
-  }
-
-  console.log(psychologists);
-
+  
   function getHeaderTextClass() {
     if (changingHeader) return 'text-leave';
     else return 'text-enter';
