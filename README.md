@@ -8,8 +8,12 @@
 Este é um sistema web de gerenciamento de clientes e consultas para Psicólogos e Terapeutas
 
 #### Deploy
+- Para usar o sistema você precisará logar:  
+`email: admin@mail.com`  
+`senha: admin`  
 
 [Visitar Terapia](https://terapia.netlify.app/)
+
 
 
 #### Desenvolvedor(es)
