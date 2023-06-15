@@ -17,6 +17,7 @@ const PsychologistsView = () => {
   useEffect(() => {
     return () => {
       loadPsychologists();
+      console.log(psychologists);
     };
   }, []);
 
