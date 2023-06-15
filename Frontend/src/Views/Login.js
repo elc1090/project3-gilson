@@ -1,23 +1,23 @@
-import React, {useState, useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
-import './Login.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "@fortawesome/fontawesome-free/css/all.css";
-import StyledInput from '../Components/StyledInput/StyledInput';
-import BaseButton from '../Components/BaseButton/BaseButton';
-import FadeInAlert from '../Components/FadeInAlert/FadeInAlert';
+import StyledInput from "../Components/StyledInput/StyledInput";
+import BaseButton from "../Components/BaseButton/BaseButton";
+import FadeInAlert from "../Components/FadeInAlert/FadeInAlert";
 
-import api from '../Services/api';
-import {login} from '../Services/auth';
-
+import api from "../Services/api";
+import { login } from "../Services/auth";
+import { motion } from "framer-motion";
 
 function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [active, setActive] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [active, setActive] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -25,20 +25,20 @@ function Login() {
 
   async function handleLogin() {
     if (!email || !password) {
-      setErrorMessage('Preencha todos os campos');
+      setErrorMessage("Preencha todos os campos");
       setActive(true);
       return;
     }
 
     try {
-      const url = '/login';
-      const user = {email, password};
+      const url = "/login";
+      const user = { email, password };
 
-      const {data} = await api.post(url, user);
+      const { data } = await api.post(url, user);
       console.log(data);
 
       if (data.success) {
-        console.log('Login bem-sucedido');
+        console.log("Login bem-sucedido");
         login(data.auth.token, data.roles);
 
         navigate(`/${data.roles}/dashboard`);
@@ -47,17 +47,22 @@ function Login() {
       setErrorMessage(error.response.data.message);
       setActive(true);
 
-      console.error('Erro na requisição', error.response);
+      console.error("Erro na requisição", error.response);
     }
   }
 
   return (
-    <div className="Login">
+    <motion.div
+      className="Login"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="brand-container">
         <img
           className={`brand-image mt-3 `}
           alt="Logo"
-          src={'/logo-horizontal-sem-fundo.png'}
+          src={"/logo-horizontal-sem-fundo.png"}
         ></img>
       </div>
 
@@ -77,7 +82,7 @@ function Login() {
                       <StyledInput
                         value={email}
                         setValue={setEmail}
-                        placeholder={'Email'}
+                        placeholder={"Email"}
                         label="Email"
                         labelType="insideLabel"
                       />
@@ -88,7 +93,7 @@ function Login() {
                       <StyledInput
                         value={password}
                         setValue={setPassword}
-                        placeholder={'Senha'}
+                        placeholder={"Senha"}
                         label="Senha"
                         labelType="insideLabel"
                         type="password"
@@ -97,7 +102,11 @@ function Login() {
                   </div>
                   <div className="d-flex col-12 justify-content-center mt-4">
                     <div className="input-container">
-                      <FadeInAlert message={errorMessage} visible={active} setVisible={setActive} />
+                      <FadeInAlert
+                        message={errorMessage}
+                        visible={active}
+                        setVisible={setActive}
+                      />
                     </div>
                   </div>
                   <div className="d-flex col-12 justify-content-center">
@@ -113,7 +122,7 @@ function Login() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

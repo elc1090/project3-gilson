@@ -1,12 +1,20 @@
-import React from 'react';
-import Sidebar from './Sidebar';
-import './DashboardLayout.css';
+import React from "react";
+import Sidebar from "./Sidebar";
+import "./DashboardLayout.css";
+import { motion } from "framer-motion";
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <div className="layout">
       <Sidebar />
-      <div className="content">{children}</div>
+      <motion.div
+        className="content"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        {children}
+      </motion.div>
     </div>
   );
 };
