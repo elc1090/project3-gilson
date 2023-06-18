@@ -85,7 +85,7 @@ function PatientsForm() {
           <div className="col-md-12 mt-4">
             <h2 className="text-bolder">Dados Pessoais:</h2>
           </div>
-          <div className="col-lg-4">
+          <div className="col-lg-6 col-xl-4">
             <BaseInput
               value={formData.name}
               setValue={(value) => handleChange("name", value)}
@@ -95,7 +95,7 @@ function PatientsForm() {
               type={"input"}
             />
           </div>
-          <div className="col-lg-4">
+          <div className="col-lg-6 col-xl-4">
             <BaseInput
               value={formData.birth_date}
               setValue={(value) => handleChange("birth_date", value)}

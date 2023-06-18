@@ -24,7 +24,6 @@ class PsychologistController {
         "password",
         "name",
       ]);
-      
 
       const newUser = new User();
       newUser.username = cpf; // Defina o nome de usuário conforme necessário
@@ -33,8 +32,6 @@ class PsychologistController {
       newUser.username = name;
       newUser.role = "psychologist";
       await newUser.save();
-
-      console.log("aquii")
 
       // Cria um novo psicólogo associado ao usuário
       const psychologist = new Psychologist();

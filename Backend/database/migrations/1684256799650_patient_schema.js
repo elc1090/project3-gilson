@@ -13,7 +13,7 @@ class PatientSchema extends Schema {
       table
         .integer("psychologist_id")
         .unsigned()
-        .references("psychologist_id")
+        .references("user_id")
         .inTable("psychologists")
         .onDelete("CASCADE");
       table.timestamps();

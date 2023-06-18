@@ -9,7 +9,7 @@ class Patient extends Model {
   }
 
   psychologist() {
-    return this.belongsTo('App/Models/Psychologist', 'psychologist_id', 'psychologist_id')
+    return this.belongsTo('App/Models/Psychologist', 'psychologist_id', 'user_id')
   }
 }
 

@@ -3,10 +3,12 @@
 const Patient = use("App/Models/Patient");
 
 class PatientController {
-  async index({ response }) {
+  async index({ auth, response }) {
     try {
-      const patients = await Patient.query().fetch();
-      return response.send(patients);
+      const patients = await Patient.query()
+        .where("psychologist_id", auth.user.id)
+        .fetch();
+      return response.json({ patients });
     } catch (error) {
       return response
         .status(500)
@@ -14,20 +16,15 @@ class PatientController {
     }
   }
 
-  async store({ request, response }) {
+  async store({ request, response, auth }) {
     try {
-      const { name, email, cpf, psychologist_id } = request.only([
-        "name",
-        "email",
-        "cpf",
-        "psychologist_id",
-      ]);
+      const { name, email, cpf } = request.only(["name", "email", "cpf"]);
 
       const patient = new Patient();
       patient.name = name;
       patient.email = email;
       patient.cpf = cpf;
-      patient.psychologist_id = psychologist_id;
+      patient.psychologist_id = auth.user.id;
       await patient.save();
 
       return response

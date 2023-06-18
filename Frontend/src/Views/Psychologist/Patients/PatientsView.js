@@ -15,7 +15,7 @@ const PatientsView = () => {
   useEffect(() => {
     const loadpatients = async () => {
       try {
-        const { data } = await api.get("psychologist/patients");
+        const { data } = await api.get("psychologists/patients");
         const patientsData = data.patients;
         setPatients(patientsData);
       } catch (error) {
@@ -65,7 +65,7 @@ const PatientsView = () => {
               return (
                 <div
                   className="col-12 col-md-6 col-lg-4 col-xxl-3"
-                  key={patient.user_id}
+                  key={patient.patient_id}
                 >
                   <div className="row patient-card">
                     <div className="d-flex col-12 justify-content-center">
