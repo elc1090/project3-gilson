@@ -11,7 +11,7 @@
       "title": "Pacientes",
       "link": "/psychologist/patients",
       "icon": "fas fa-people-group",
-      "role": "pacients"
+      "role": "patients"
     },
     {
       "id": 3,

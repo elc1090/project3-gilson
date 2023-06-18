@@ -8,6 +8,7 @@ import PsychologistLayout from './Psychologist/DashboardLayout';
 import DashboardPsychologist from '../Views/Psychologist/Dashboard';
 import PathologiesView from '../Views/Psychologist/Pathologies/PathologiesView';
 import PatientsView from '../Views/Psychologist/Patients/PatientsView';
+import PatientsForm from '../Views/Psychologist/Patients/PatientsForm';
 import SessionsView from '../Views/Psychologist/Sessions/SessionsView';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
@@ -73,6 +74,15 @@ function AnimatedRoutes() {
                     element={
                         <PsychologistLayout>
                             <PatientsView />
+                        </PsychologistLayout>
+                    }
+                />
+                <Route
+                    exact
+                    path="/psychologist/patients/new"
+                    element={
+                        <PsychologistLayout>
+                            <PatientsForm />
                         </PsychologistLayout>
                     }
                 />

@@ -1,3 +1,9 @@
+.dashboard-container {
+  display: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
 .dashboard-header {
   position: relative;
   max-height: 196px;

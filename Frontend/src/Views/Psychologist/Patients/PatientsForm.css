@@ -1,0 +1,63 @@
+.form-container {
+    display: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.page-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    padding: 2em;
+    padding-left: 3em;
+}
+
+.button-icon {
+    margin-right: 20px;
+}
+
+.empty-page {
+    font-size: calc(2em);
+    font-weight: bolder;
+    margin-top: 20%;
+    color: rgba(0, 0, 0, 0.397);
+    text-align: center;
+}
+
+.input-label {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.form-group-centered {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+    justify-content: center;
+    width: 70%;
+}
+
+.form-group-left {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+    justify-content: start;
+    width: 70%;
+}
+
+.form-group {
+    margin-bottom: 2em;
+}
+
+.submit-session {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10em;
+}
+
+.text-bolder {
+    font-weight: bolder;
+    color: rgba (136, 149, 158, 1);
+}

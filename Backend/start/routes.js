@@ -27,14 +27,10 @@ Route.group(() => {
     //Route.resource("demands", "Admin/DemandController").apiOnly();
 }).prefix("users");
 
-Route.get('/pathologies', 'PathologyController.index');
-Route.post('/pathologies', 'PathologyController.store');
-
-Route.get('/patients', 'PatientController.index');
-Route.post('/patients', 'PatientController.store');
-
-Route.get('/diagnoses', 'DiagnosisController.index');
-Route.post('/diagnoses', 'DiagnosisController.store');
-
-Route.get('/demands', 'DemandController.index');
-Route.post('/demands', 'DemandController.store');
+Route.group(() => {
+    Route.resource("patients", "Psychologist/PatientController").apiOnly();
+    //Route.resource("pathologies", "Admin/PathologyController").apiOnly();
+    //Route.resource("patients", "Admin/PatientController").apiOnly();
+    //Route.resource("diagnoses", "Admin/DiagnosisController").apiOnly();
+    //Route.resource("demands", "Admin/DemandController").apiOnly();
+}).prefix("psychologists");
