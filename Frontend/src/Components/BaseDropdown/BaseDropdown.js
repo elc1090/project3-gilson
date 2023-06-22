@@ -3,12 +3,12 @@ import "./BaseDropdown.css";
 
 function BaseDropdown({ value, setValue, label, icon, children }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(false);
+  const [noneSelection, setNoneSelection] = useState(true);
   const dropdownRef = useRef(null);
 
   const handleInputChange = (event) => {
     setValue(event.target.value);
-    setSelectedOption(event.target.value !== "");
+    setNoneSelection(event.target.value === "");
   };
 
   const toggleDropdown = () => {
@@ -31,7 +31,7 @@ function BaseDropdown({ value, setValue, label, icon, children }) {
   return (
     <div className={`select-group field`} ref={dropdownRef}>
       <select
-        className={`select-field ${selectedOption ? "option-selected" : ""}`}
+        className={`select-field ${noneSelection ? "none-selection" : ""}`}
         name={label}
         id={label}
         value={value}

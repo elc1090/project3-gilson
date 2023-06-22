@@ -17,7 +17,6 @@ function PatientsForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: "",
     role: "psychologist",
     cpf: "",
     birth_date: "",
@@ -57,33 +56,6 @@ function PatientsForm() {
 
       <div className="page-body">
         <div className="d-flex row">
-          <div className="col-md-12">
-            <h2 className="text-bolder">Perfil:</h2>
-          </div>
-          <div className="col-md-6">
-            <BaseInput
-              value={formData.email}
-              setValue={(value) => handleChange("email", value)}
-              placeholder={"Email"}
-              label={"Email"}
-              icon="fas fa-envelope"
-              type="email"
-            />
-          </div>
-          <div className="col-md-6"> </div>
-
-          <div className="col-md-6 mt--2">
-            <BaseInput
-              value={formData.password}
-              setValue={(value) => handleChange("password", value)}
-              placeholder={"Senha"}
-              icon="fas fa-lock"
-              label={"Senha"}
-              type="password"
-            />
-          </div>
-          <div className="col-md-6"> </div>
-
           <div className="col-md-12 mt-4">
             <h2 className="text-bolder">Dados Pessoais:</h2>
           </div>
@@ -132,7 +104,23 @@ function PatientsForm() {
               type={"input"}
             />
           </div>
-          <div className="col-lg-4">
+
+          <div className="col-md-12">
+            <h2 className="text-bolder">Contato:</h2>
+          </div>
+          <div className="col-md-6">
+            <BaseInput
+              value={formData.email}
+              setValue={(value) => handleChange("email", value)}
+              placeholder={"Email"}
+              label={"Email"}
+              icon="fas fa-envelope"
+              type="email"
+            />
+          </div>
+          <div className="col-md-6 d-none d-md-block"></div>
+
+          <div className="col-md-6">
             <BaseInput
               value={formData.phone}
               setValue={(value) => handleChange("phone", value)}
@@ -142,6 +130,7 @@ function PatientsForm() {
               type={"phone"}
             />
           </div>
+          <div className="col-md-6"> </div>
           <div className="col-12 submit-session">
             <BaseButton type="primary-black" onClick={handleSubmitForm}>
               <i className="button-icon fas fa-check " /> Salvar Perfil

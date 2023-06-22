@@ -23,17 +23,8 @@
   -webkit-appearance: none;
 }
 
-.select-field:not(.option-selected) .select-label {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #9b9b9b;
-  position: absolute;
-  top: 30px;
-  transition: 0.2s;
-  cursor: text;
-}
-
-.select-field:not(.option-selected) ~ .select-label {
+.select-field:focus-within ~ .select-label,
+.select-field:not(.none-selection) ~ .select-label {
   font-size: 1.05rem;
   font-weight: 700;
   cursor: text;
