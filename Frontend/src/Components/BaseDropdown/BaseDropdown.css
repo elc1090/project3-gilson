@@ -5,7 +5,9 @@
 }
 
 .select-field {
+  position: relative;
   font-family: inherit;
+  min-height: 50px;
   width: 100%;
   border: 0;
   border-bottom: 2px solid #9b9b9b;
@@ -23,8 +25,8 @@
   -webkit-appearance: none;
 }
 
-.select-field:focus-within ~ .select-label,
-.select-field:not(.none-selection) ~ .select-label {
+.select-field:not(.none-selection) ~ .select-label,
+.select-field:not(.dropdown-closed) ~ .select-label {
   font-size: 1.05rem;
   font-weight: 700;
   cursor: text;
@@ -59,7 +61,7 @@
   transform: translateY(-50%) rotate(180deg);
 }
 
-.dropdown-menu {
+.menu-dropdown {
   position: absolute;
   top: 100%;
   left: 0;
@@ -75,10 +77,8 @@
 .dropdown-item {
   padding: 10px;
   cursor: pointer;
-  
 }
 
 .dropdown-item:hover {
   background-color: #f0f0f0;
 }
-
