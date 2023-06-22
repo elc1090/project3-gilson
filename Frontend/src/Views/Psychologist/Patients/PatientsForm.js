@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import BaseButton from "../../../Components/BaseButton/BaseButton";
 import BaseInput from "../../../Components/BaseInput/BaseInput";
+import BaseDropdown from "../../../Components/BaseDropdown/BaseDropdown";
 
 import api from "../../../Services/api";
 
@@ -23,6 +24,7 @@ function PatientsForm() {
     phone: "",
     gender: "",
   });
+  const [genderOptions] = useState(["Masculino", "Feminino", "Outro"]);
 
   async function handleSubmitForm() {
     try {
@@ -105,15 +107,20 @@ function PatientsForm() {
               type={"input"}
             />
           </div>
-          <div className="col-lg-4">
-            <BaseInput
-              value={formData.gender}
-              setValue={(value) => handleChange("gender", value)}
-              placeholder={"Sexo"}
-              icon="fas fa-genderless"
-              label={"Sexo"}
-              type={"input"}
-            />
+          <div className="col-lg-6 col-xl-4">
+          <BaseDropdown
+            value={formData.gender}
+            setValue={(value) => handleChange("gender", value)}
+            placeholder={"Sexo"}
+            icon="fas fa-genderless"
+            label={"Sexo"}
+          >
+            {genderOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </BaseDropdown>
           </div>
           <div className="col-lg-4">
             <BaseInput
@@ -135,7 +142,6 @@ function PatientsForm() {
               type={"phone"}
             />
           </div>
-
           <div className="col-12 submit-session">
             <BaseButton type="primary-black" onClick={handleSubmitForm}>
               <i className="button-icon fas fa-check " /> Salvar Perfil
