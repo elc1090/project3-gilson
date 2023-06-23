@@ -9,6 +9,7 @@ function StyledInput({
   labelType,
   type,
   icon,
+  onKeyUp,
 }) {
   const handleInputChange = (event) => {
     setValue(event.target.value);
@@ -53,6 +54,7 @@ function StyledInput({
           placeholder={placeholder}
           value={value}
           onChange={handleInputChange}
+          onKeyUp={onKeyUp}
         />
       </div>
     </div>

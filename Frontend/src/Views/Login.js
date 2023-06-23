@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,6 +18,8 @@ function Login() {
 
   const [active, setActive] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const loginButtonRef = useRef(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -50,6 +52,13 @@ function Login() {
       console.error("Erro na requisição", error.response);
     }
   }
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      loginButtonRef.current.click();
+    }
+  };
 
   return (
     <motion.div
@@ -85,6 +94,7 @@ function Login() {
                         placeholder={"Email"}
                         label="Email"
                         labelType="insideLabel"
+                        onKeyUp={handleKeyPress}
                       />
                     </div>
                   </div>
@@ -97,6 +107,7 @@ function Login() {
                         label="Senha"
                         labelType="insideLabel"
                         type="password"
+                        onKeyUp={handleKeyPress}
                       />
                     </div>
                   </div>
@@ -111,7 +122,11 @@ function Login() {
                   </div>
                   <div className="d-flex col-12 justify-content-center">
                     <div className="enter-button">
-                      <BaseButton type="primary-black" onClick={handleLogin}>
+                      <BaseButton
+                        type="primary-black"
+                        ref={loginButtonRef}
+                        onClick={handleLogin}
+                      >
                         Entrar
                       </BaseButton>
                     </div>

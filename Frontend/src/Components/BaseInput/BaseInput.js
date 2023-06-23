@@ -5,7 +5,7 @@
 import React from "react";
 import "./BaseInput.css";
 
-function BaseInput({ placeholder, value, setValue, label, icon, type }) {
+function BaseInput({ placeholder, value, setValue, label, icon, type, onKeyUp}) {
   const handleInputChange = (event) => {
     setValue(event.target.value);
   };
@@ -20,6 +20,7 @@ function BaseInput({ placeholder, value, setValue, label, icon, type }) {
         id={label}
         onChange={handleInputChange}
         value={value}
+        onKeyUp={onKeyUp}
         required
       />
       <label htmlFor={label} className="form-label">
