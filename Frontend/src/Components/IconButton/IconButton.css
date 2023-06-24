@@ -14,6 +14,10 @@
   animation: shrink-animation 0.2s ease forwards;
 }
 
+.icon-md {
+  font-size: 1.5em;
+}
+
 @keyframes scale-animation {
   from {
     transform: scale(1);

@@ -1,0 +1,181 @@
+.new-session-container {
+  display: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.new-session-header {
+  position: relative;
+  max-height: 196px;
+  display: flex;
+  flex-direction: column;
+  font-size: 36px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  padding: 1em;
+  padding-left: 4em;
+  background-color: white;
+  box-shadow: 0 4px 6px 1px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.header-title {
+  margin-top: 1em;
+}
+
+.button-container {
+  font-size: medium;
+}
+
+.margin-right-sm {
+  margin-right: 1em;
+}
+
+.card {
+  border-radius: 0;
+  font-family: "Raleway";
+  box-shadow: 0px 5px 10px -2px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  border: none;
+}
+
+.ql-editor {
+  min-height: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.card-header {
+  background-color: white;
+  box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.15);
+  width: 100%;
+}
+
+.card-title {
+  font-size: 1.45em;
+  margin-top: 1%;
+  margin-bottom: -0.25%;
+}
+
+.full-height {
+  min-height: 100%;
+}
+
+.input-sm-container .inside-label {
+  max-width: 15%;
+  max-height: 36px;
+  font-size: medium;
+}
+
+.input-sm-container .styled-input {
+  font-size: medium;
+  max-height: 40px;
+  width: 100%;
+}
+
+.input-sm-container .inside-label-padding {
+  padding-left: 60px;
+}
+
+.empty-page {
+  font-size: calc(2em);
+  font-weight: bolder;
+  margin-top: 20%;
+  color: rgba(0, 0, 0, 0.397);
+  text-align: center;
+}
+
+.page-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  padding: 3em;
+}
+
+.header-subtitle {
+  opacity: 0;
+  margin-top: 0.5em;
+  animation-delay: 0.3s;
+}
+
+.text-enter {
+  opacity: 0;
+  animation: text-in 1s ease forwards;
+}
+
+.text-leave {
+  animation: container-out 0.5s ease forwards;
+}
+
+.page-icon {
+  margin-right: 30px;
+}
+
+.patient-card {
+  display: flex;
+  justify-content: center;
+  width: 85%;
+  height: 250px;
+  background-color: #000000;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  transition: transform 0.3s, top 0.3s, left 0.3s;
+}
+
+.patient-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.profile-img {
+  height: 125px;
+  width: 125px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.btn-container {
+  margin-bottom: 3em;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("../../../../public/fonts/Raleway/static/Raleway-Medium.ttf")
+    format("truetype");
+}
+
+@keyframes text-in {
+  from {
+    opacity: 0;
+    transform: translateX(3em);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes container-in {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes container-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
