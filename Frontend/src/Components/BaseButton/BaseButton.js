@@ -4,9 +4,10 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import "./BaseButton.css";
 
 const BaseButton = React.forwardRef(
-  ({ iconOnly, icon, children, type, onClick }, ref) => {
+  ({ iconOnly, icon, children, type, onClick, id }, ref) => {
     return (
       <button
+        id={id}
         ref={ref}
         type={type}
         className={"base-btn " + type}

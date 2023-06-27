@@ -18,6 +18,10 @@
   font-size: 1.5em;
 }
 
+.icon-xl {
+  font-size: 2em;
+}
+
 @keyframes scale-animation {
   from {
     transform: scale(1);

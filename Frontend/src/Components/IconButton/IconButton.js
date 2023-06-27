@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "./IconButton.css";
 
-function IconButton({ icon, onClick, animation, iconClass }) {
+function IconButton({ icon, onClick, animation, iconClass, id }) {
   const [pressed, setPressed] = useState(false);
   const [hovering, setHovering] = useState(false);
   const [justUnhovered, setJustUnhovered] = useState(false);
@@ -34,6 +34,7 @@ function IconButton({ icon, onClick, animation, iconClass }) {
 
   return (
     <i
+      id={id}
       className={`cursor-pointer ${icon} ${hovering ? "hover" : ""} ${
         pressed ? "bounce" : ""
       } ${justUnhovered ? "unhover" : ""} ${iconClass}`}
