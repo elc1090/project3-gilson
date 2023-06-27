@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Tooltip } from "react-tooltip";
 import "./SemaphoreInput.css"; // Importando o arquivo de estilos CSS
 
-const Semaphore = ({ selectedLevel, onChange }) => {
+const Semaphore = ({ selectedLevel, onChange, onlyView }) => {
   const [level, setLevel] = useState(selectedLevel);
 
   const handleLevelChange = (newLevel) => {
@@ -14,18 +14,18 @@ const Semaphore = ({ selectedLevel, onChange }) => {
     <div className="semaphore">
       <div
         id="semaphore-tooltip-green"
-        className={`circle green ${level === "green" ? "selected" : ""}`}
-        onClick={() => handleLevelChange("verde")}
+        className={`circle green ${level === "low" ? "selected" : ""}`}
+        onClick={() => handleLevelChange("low")}
       />
       <div
         id="semaphore-tooltip-yellow"
-        className={`circle yallow ${level === "amarelo" ? "selected" : ""}`}
-        onClick={() => handleLevelChange("amarelo")}
+        className={`circle yellow ${level === "medium" ? "selected" : ""}`}
+        onClick={() => handleLevelChange("medium")}
       />
       <div
         id="semaphore-tooltip-red"
-        className={`circle red ${level === "vermelho" ? "selected" : ""}`}
-        onClick={() => handleLevelChange("vermelho")}
+        className={`circle red ${level === "high" ? "selected" : ""}`}
+        onClick={() => handleLevelChange("high")}
       />
       <Tooltip anchorSelect="#semaphore-tooltip-green" place="top">
         Baixa Relevância
