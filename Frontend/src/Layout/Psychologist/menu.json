@@ -19,13 +19,6 @@
       "link": "/psychologist/sessions",
       "icon": "fas fa-clipboard-list",
       "role": "sessions"
-    },
-    {
-      "id": 4,
-      "title": "Patologias",
-      "link": "/psychologist/pathologies",
-      "icon": "fas fa-brain",
-      "role": "pathologies"
     }
   ]
   

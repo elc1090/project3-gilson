@@ -88,6 +88,12 @@ const NewSession = () => {
     setDemmandModel({ check: false, title: "", level: "" });
   }
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleAddDemmand();
+    }
+  };
+
   function handleFinishSession() {
     navigate(`/psychologist/sessions`);
   }
@@ -139,8 +145,8 @@ const NewSession = () => {
       </header>
 
       <div className="page-body">
-        <div className="d-flex row justify-content-between">
-          <div className="col-lg-6">
+        <div className="d-flex row">
+          <div className="col-lg-4">
             <div className="row">
               <div className="card p-0">
                 <div className="card-header">
@@ -172,7 +178,7 @@ const NewSession = () => {
               </div>
             </div>
           </div>
-          <div className="col-lg-6 demand-column">
+          <div className="col-lg-4 demand-column">
             <div className="row h-100">
               <div className="full-height card p-0">
                 <div className="card-header">
@@ -233,7 +239,8 @@ const NewSession = () => {
                                   />
                                   {(row.level === "low" && "Baixa") ||
                                     (row.level === "medium" && "Média") ||
-                                    (row.level === "high" && "Alta")}
+                                    (row.level === "high" && "Alta") ||
+                                    "N/A"}
                                 </div>
                               </TableCell>
                             </TableRow>
@@ -250,7 +257,11 @@ const NewSession = () => {
                   )}
                 </div>
                 <div className="card-footer">
-                  <div className="d-flex footer-container align-items-center justify-content-center">
+                  <div
+                    className="d-flex footer-container align-items-center justify-content-center"
+                    tabIndex={0}
+                    onKeyUp={handleKeyPress}
+                  >
                     <div className="input-sm-container margin-right-sm">
                       <StyledInput
                         setValue={(value) =>
@@ -260,6 +271,8 @@ const NewSession = () => {
                         placeholder={"Nova demanda"}
                         labelType={"insideLabel"}
                         icon={"fas fa-boxes-stacked"}
+                        value={demmandModel.title}
+                        onKeyUp={handleKeyPress}
                       ></StyledInput>
                     </div>
                     <div className="semaphore-container">

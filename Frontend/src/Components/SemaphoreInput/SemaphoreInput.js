@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import { Tooltip } from "react-tooltip";
 import "./SemaphoreInput.css"; // Importando o arquivo de estilos CSS
 
-const Semaphore = ({ selectedLevel, onChange, onlyView }) => {
-  const [level, setLevel] = useState(selectedLevel);
-
+const Semaphore = ({ selectedLevel, onChange }) => {
   const handleLevelChange = (newLevel) => {
-    setLevel(newLevel);
     onChange(newLevel);
   };
 
@@ -14,17 +11,17 @@ const Semaphore = ({ selectedLevel, onChange, onlyView }) => {
     <div className="semaphore">
       <div
         id="semaphore-tooltip-green"
-        className={`circle green ${level === "low" ? "selected" : ""}`}
+        className={`circle green ${selectedLevel === "low" ? "selected" : ""}`}
         onClick={() => handleLevelChange("low")}
       />
       <div
         id="semaphore-tooltip-yellow"
-        className={`circle yellow ${level === "medium" ? "selected" : ""}`}
+        className={`circle yellow ${selectedLevel === "medium" ? "selected" : ""}`}
         onClick={() => handleLevelChange("medium")}
       />
       <div
         id="semaphore-tooltip-red"
-        className={`circle red ${level === "high" ? "selected" : ""}`}
+        className={`circle red ${selectedLevel === "high" ? "selected" : ""}`}
         onClick={() => handleLevelChange("high")}
       />
       <Tooltip anchorSelect="#semaphore-tooltip-green" place="top">
