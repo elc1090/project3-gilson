@@ -1,7 +1,7 @@
 import React from "react";
 import "./NewSession.css";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useStopwatch } from "react-timer-hook";
 
 import BaseButton from "../../../Components/BaseButton/BaseButton";
@@ -22,12 +22,15 @@ import { Tooltip } from "react-tooltip";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
+import api from "../../../Services/api";
+
 const NewSession = () => {
   const navigate = useNavigate();
   const [changingHeader] = useState(false);
-  const [patient, setPatient] = useState({ name: "Gilson Garcia" });
-  const { seconds, minutes, hours } = useStopwatch({ autoStart: true });
+  const [patient, setPatient] = useState({});
   const [rows, setRows] = useState([]);
+  const { patient_id } = useParams();
+  const { seconds, minutes, hours } = useStopwatch({ autoStart: true });
 
   const [formData, setFormData] = useState({
     general_notes: "",
@@ -39,6 +42,25 @@ const NewSession = () => {
     title: "",
     level: "",
   });
+
+  useEffect(() => {
+    const loadPatient = async () => {
+      try {
+        const { data } = await api.get(`psychologists/patients/${patient_id}`);
+        const patientsData = data.patient;
+        setPatient(patientsData);
+      } catch (error) {
+        console.log(error.response.data.message);
+        console.error("Erro na requisição", error.response);
+      }
+    };
+
+    const fetchData = async () => {
+      await loadPatient();
+    };
+
+    fetchData();
+  }, [patient_id]);
 
   function getHeaderTextClass() {
     if (changingHeader) return "text-leave";

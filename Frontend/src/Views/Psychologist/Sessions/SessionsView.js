@@ -4,19 +4,49 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
+import Backdrop from "@mui/material/Backdrop";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+
 import BaseButton from "../../../Components/BaseButton/BaseButton";
+
+import api from "../../../Services/api";
 
 const SessionsView = () => {
   const navigate = useNavigate();
   const [changingHeader] = useState(false);
+  const [sessions, setSessions] = useState([]);
+  const [patients, setPatients] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+
+  useEffect(() => {
+    const loadpatients = async () => {
+      try {
+        const { data } = await api.get("psychologists/patients");
+        const patientsData = data.patients;
+        setPatients(patientsData);
+      } catch (error) {
+        console.log(error.response.data.message);
+        console.error("Erro na requisição", error.response);
+      }
+    };
+
+    const fetchData = async () => {
+      await loadpatients();
+    };
+
+    fetchData();
+  }, []);
 
   function getHeaderTextClass() {
     if (changingHeader) return "text-leave";
     else return "text-enter";
   }
 
-  function navigateToInitSession() {
-    navigate(`/psychologist/sessions/new`);
+  function navigateToInitSession(patient_id) {
+    navigate(`/psychologist/sessions/${patient_id}/new`);
   }
 
   return (
@@ -33,12 +63,78 @@ const SessionsView = () => {
       <div className="page-body">
         <div className="row btn-container">
           <div className=" d-flex col-12 justify-content-start mb-4">
-            <BaseButton type="primary-black" onClick={navigateToInitSession}>
+            <BaseButton type="primary-black" onClick={() => setOpenModal(true)}>
               <i className="button-icon fas fa-plus " /> Iniciar nova sessão
             </BaseButton>
           </div>
         </div>
+        <div className="row">
+          {sessions.length ? (
+            <div>teste</div>
+          ) : (
+            <span className="empty-page">Nenhuma sessão realizada</span>
+          )}
+        </div>
       </div>
+
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={openModal}>
+          <div className="card patients-modal">
+            <div className="card-header modal-header">
+              <h1 className="card-title">
+                <i className="fas fa-square-check mr-3 ml-2" />
+                Selecione um paciente
+              </h1>
+            </div>
+            <div className="modal-body">
+              <div className="row">
+                {patients?.length ? (
+                  patients.map((patient) => {
+                    return (
+                      <div
+                        className="col-12 col-md-6 col-lg-4 col-xxl-3"
+                        key={patient.patient_id}
+                      >
+                        <div
+                          className="row small-patient-card"
+                          onClick={() =>
+                            navigateToInitSession(patient.patient_id)
+                          }
+                        >
+                          <div className="d-flex col-12 justify-content-center">
+                            <img
+                              className={`small-profile-img mt-3 `}
+                              alt="Foto de Perfil do Psicólogo"
+                              src={"/user-profile.png"}
+                            ></img>
+                          </div>
+                          <div className="d-flex col-12 align-items-center flex-column text-white mb-3 mt-2">
+                            <h5>{patient.name}</h5>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <span className="empty-page">Nenhum paciente cadastrado</span>
+                )}
+              </div>
+            </div>
+          </div>
+        </Fade>
+      </Modal>
     </div>
   );
 };

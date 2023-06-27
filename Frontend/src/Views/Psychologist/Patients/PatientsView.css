@@ -63,11 +63,13 @@
   display: flex;
   justify-content: center;
   width: 85%;
-  height: 250px;
+  height: 275px;
   background-color: #000000;
   margin-bottom: 20px;
   margin-left: 10px;
   transition: transform 0.3s, top 0.3s, left 0.3s;
+  text-align: center;
+  padding: 10px;
 }
 
 .patient-card:hover {

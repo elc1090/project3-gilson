@@ -34,6 +34,25 @@ class PatientController {
       return response.status(500).send({ message: "Erro ao criar o paciente" });
     }
   }
+
+  async show({ params, response }) {
+    console.log("aquiii");
+    try {
+      const patient = await Patient.find(params.id);
+
+      if (!patient) {
+        return response
+          .status(404)
+          .send({ message: "Paciente não encontrado" });
+      }
+
+      return response.json({ patient });
+    } catch (error) {
+      return response
+        .status(500)
+        .send({ message: "Erro ao buscar o paciente" });
+    }
+  }
 }
 
 module.exports = PatientController;

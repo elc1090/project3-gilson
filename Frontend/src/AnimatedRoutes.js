@@ -99,7 +99,7 @@ function AnimatedRoutes() {
         />
         <Route
           exact
-          path="/psychologist/sessions/new"
+          path="/psychologist/sessions/:patient_id/new"
           element={
             <PsychologistLayout>
               <NewSession />
