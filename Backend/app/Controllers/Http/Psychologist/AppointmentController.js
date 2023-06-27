@@ -7,7 +7,8 @@ const Demand = use("App/Models/Demand");
 class AppointmentController {
   async index({ response }) {
     try {
-      const appointments = await Appointment.query().fetch();
+      const appointments = await Appointment.query().with("patient").fetch();
+
       return response.send(appointments);
     } catch (error) {
       return response
@@ -36,7 +37,7 @@ class AppointmentController {
         diagnosis.description = data.diagnosis_description;
         await diagnosis.save();
       }
-
+      
       if (data.demandsToSave.length > 0) {
         data.demandsToSave.forEach(async (demand) => {
           const newDemand = new Demand();
@@ -53,8 +54,6 @@ class AppointmentController {
           await demandToRemove.delete();
         });
       }
-
-      console.log("aqui2");
 
       return response
         .status(201)

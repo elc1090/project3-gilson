@@ -7,11 +7,15 @@ import { useEffect } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 import BaseButton from "../../../Components/BaseButton/BaseButton";
-
 import api from "../../../Services/api";
 
 const SessionsView = () => {
@@ -33,8 +37,21 @@ const SessionsView = () => {
       }
     };
 
+    const loadSessions = async () => {
+      try {
+        const { data } = await api.get("psychologists/appointments");
+        const sessionsData = data;
+        console.log(sessionsData);
+        setSessions(sessionsData);
+      } catch (error) {
+        console.log(error.response.data.message);
+        console.error("Erro na requisição", error.response);
+      }
+    };
+
     const fetchData = async () => {
       await loadpatients();
+      await loadSessions();
     };
 
     fetchData();
@@ -47,6 +64,17 @@ const SessionsView = () => {
 
   function navigateToInitSession(patient_id) {
     navigate(`/psychologist/sessions/${patient_id}/new`);
+  }
+
+  function getFormatedDate(date) {
+    const dateObj = new Date(date);
+
+    // Obter os componentes da data (dia, mês, ano)
+    const day = dateObj.getDate().toString().padStart(2, "0");
+    const month = (dateObj.getMonth() + 1).toString().padStart(2, "0");
+    const year = dateObj.getFullYear().toString();
+
+    return `${day}-${month}-${year}`;
   }
 
   return (
@@ -69,8 +97,40 @@ const SessionsView = () => {
           </div>
         </div>
         <div className="row">
-          {sessions.length ? (
-            <div>teste</div>
+          {sessions?.length ? (
+            <TableContainer sx={{ borderRadius: 0 }} component={Paper}>
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>#</TableCell>
+                    <TableCell>Data</TableCell>
+                    <TableCell>Paciente</TableCell>
+                    <TableCell>Duração</TableCell>
+                    <TableCell>Ações</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {sessions.map((row, index) => (
+                    <TableRow
+                      key={"appointment_" + index}
+                      sx={{
+                        "&:last-child td, &:last-child th": {
+                          border: 0,
+                        },
+                      }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {index}
+                      </TableCell>
+                      <TableCell>{getFormatedDate(row.created_at)}</TableCell>
+                      <TableCell>{row.patient.name}</TableCell>
+                      <TableCell>{row.duration}</TableCell>
+                      <TableCell> </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
           ) : (
             <span className="empty-page">Nenhuma sessão realizada</span>
           )}

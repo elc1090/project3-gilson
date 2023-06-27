@@ -26,7 +26,12 @@ Route.group(() => {
 Route.group(() => {
   Route.resource("patients", "Psychologist/PatientController").apiOnly();
   Route.resource(
-    "patients/:patient_id/appointments",
+    "appointments",
     "Psychologist/AppointmentController"
   ).apiOnly();
+
+  Route.post(
+    "patients/:patient_id/appointments",
+    "Psychologist/AppointmentController.store"
+  );
 }).prefix("psychologists");
