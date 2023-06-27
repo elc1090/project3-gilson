@@ -1,0 +1,48 @@
+.semaphore {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s; /* Add a smooth transition effect */
+}
+
+.circle.green:hover {
+  background-color: rgb(0, 151, 8);
+}
+
+.circle.yallow:hover {
+  background-color: rgb(187, 207, 0);
+}
+
+.circle.red:hover {
+  background-color: rgb(255, 0, 0);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.selected {
+  opacity: 1;
+}
+
+.selected.green {
+  background-color: rgb(0, 151, 8);
+}
+
+.selected.yallow {
+  background-color: rgb(187, 207, 0);
+}
+
+.selected.red {
+  background-color: rgb(255, 0, 0);
+}
