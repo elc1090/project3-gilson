@@ -23,6 +23,7 @@ class DemandSchema extends Schema {
         .references("appointment_id")
         .inTable("appointments")
         .onDelete("CASCADE")
+      table.enum("relevance", ["low", "medium", "high"]).notNullable();
       table.timestamps();
     });
   }

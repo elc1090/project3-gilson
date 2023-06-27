@@ -14,14 +14,7 @@ class DiagnosisSchema extends Schema {
         .inTable("patients")
         .onDelete("CASCADE")
         .notNullable();
-      table
-        .integer("pathology_id")
-        .unsigned()
-        .references("pathology_id")
-        .inTable("pathologies")
-        .onDelete("CASCADE")
-        .notNullable();
-      table.enum("level", ["mild", "moderate", "severe"]).notNullable();
+      table.string("description");
 
       table.timestamps();
     });

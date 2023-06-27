@@ -20,17 +20,13 @@ Route.on("/").render("welcome");
 Route.post("login", "UserController.login");
 
 Route.group(() => {
-    Route.resource("psychologists", "Admin/PsychologistController").apiOnly();
-    //Route.resource("pathologies", "Admin/PathologyController").apiOnly();
-    //Route.resource("patients", "Admin/PatientController").apiOnly();
-    //Route.resource("diagnoses", "Admin/DiagnosisController").apiOnly();
-    //Route.resource("demands", "Admin/DemandController").apiOnly();
+  Route.resource("psychologists", "Admin/PsychologistController").apiOnly();
 }).prefix("users");
 
 Route.group(() => {
-    Route.resource("patients", "Psychologist/PatientController").apiOnly();
-    //Route.resource("pathologies", "Admin/PathologyController").apiOnly();
-    //Route.resource("patients", "Admin/PatientController").apiOnly();
-    //Route.resource("diagnoses", "Admin/DiagnosisController").apiOnly();
-    //Route.resource("demands", "Admin/DemandController").apiOnly();
+  Route.resource("patients", "Psychologist/PatientController").apiOnly();
+  Route.resource(
+    "patients/:patient_id/appointments",
+    "Psychologist/AppointmentController"
+  ).apiOnly();
 }).prefix("psychologists");

@@ -7,8 +7,8 @@ class AppointmentSchema extends Schema {
   up() {
     this.create("appointments", (table) => {
       table.increments("appointment_id")
-      table.datetime("date").notNullable()
-      table.time("time").notNullable()
+      table.string("duration").notNullable()
+      table.string("general_notes")
       table
         .integer("patient_id")
         .unsigned()

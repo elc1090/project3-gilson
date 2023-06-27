@@ -28,19 +28,21 @@ const NewSession = () => {
   const navigate = useNavigate();
   const [changingHeader] = useState(false);
   const [patient, setPatient] = useState({});
-  const [rows, setRows] = useState([]);
+  const [demands, setDemands] = useState([]);
+  const [demandsToRemoval, setDemandsToRemoval] = useState([]);
   const { patient_id } = useParams();
   const { seconds, minutes, hours } = useStopwatch({ autoStart: true });
 
   const [formData, setFormData] = useState({
     general_notes: "",
-    diagnosis: "",
+    diagnosis_description: "",
+    diagnosis_id: "",
   });
 
-  const [demmandModel, setDemmandModel] = useState({
-    check: false,
+  const [demandModel, setDemandModel] = useState({
+    addressed: false,
     title: "",
-    level: "",
+    relevance: "",
   });
 
   useEffect(() => {
@@ -67,8 +69,8 @@ const NewSession = () => {
     else return "text-enter";
   }
 
-  function getSemaphoreColor(level) {
-    switch (level) {
+  function getSemaphoreColor(relevance) {
+    switch (relevance) {
       case "low":
         return "green";
       case "medium":
@@ -84,39 +86,67 @@ const NewSession = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleDemmandChange = (name, value) => {
-    setDemmandModel((prevData) => ({ ...prevData, [name]: value }));
+  const handleDemandChange = (name, value) => {
+    setDemandModel((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleCheckboxChange = (index) => {
-    const updatedRows = [...rows];
-    updatedRows[index] = {
-      ...updatedRows[index],
-      check: !updatedRows[index].check,
+    const updatedDemands = [...demands];
+    updatedDemands[index] = {
+      ...updatedDemands[index],
+      addressed: !updatedDemands[index].addressed,
       updated: true,
     };
-    setRows(updatedRows);
+    setDemands(updatedDemands);
   };
 
-  function handleAddDemmand() {
-    const updatedRows = [...rows];
-    updatedRows.push({
-      check: false,
-      title: demmandModel.title,
-      level: demmandModel.level,
+  function handleAddDemand() {
+    const updatedDemands = [...demands];
+    updatedDemands.push({
+      addressed: false,
+      title: demandModel.title,
+      relevance: demandModel.relevance,
       updated: true,
     });
-    setRows(updatedRows);
-    setDemmandModel({ check: false, title: "", level: "" });
+    setDemands(updatedDemands);
+    setDemandModel({ addressed: false, title: "", relevance: "" });
+  }
+
+  function handleRemoveDemand(index) {
+    const updatedDemands = [...demands];
+    const demand = updatedDemands[index];
+    if (demand.demand_id) {
+      setDemandsToRemoval((prevDemands) => [...prevDemands, demand.demand_id]);
+    }
+    updatedDemands.splice(index, 1);
+    setDemands(updatedDemands);
   }
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      handleAddDemmand();
+      handleAddDemand();
     }
   };
 
   function handleFinishSession() {
+    try {
+      const demandsToSave = demands.filter((demand) => demand.demand_id);
+      const duration = `${hours.toString().padStart(2, "0")}:${minutes
+        .toString()
+        .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+      const data = {
+        ...formData,
+        demandsToSave: demandsToSave,
+        demandsToRemoval: demandsToRemoval,
+        duration: duration,
+      };
+
+      api.post(`psychologists/patients/${patient_id}/appointments`, data);
+    } catch (error) {
+      console.log(error.response.data.message);
+      console.error("Erro na requisição", error.response);
+    }
     navigate(`/psychologist/sessions`);
   }
   function handleCancelSession() {
@@ -192,8 +222,10 @@ const NewSession = () => {
                 </div>
                 <div className="card-body">
                   <ReactQuill
-                    value={formData.diagnosis}
-                    onChange={(value) => handleQuillChanges("diagnosis", value)}
+                    value={formData.diagnosis_description}
+                    onChange={(value) =>
+                      handleQuillChanges("diagnosis_description", value)
+                    }
                     key={"2_react_quill"}
                   />
                 </div>
@@ -207,7 +239,7 @@ const NewSession = () => {
                   <h3 className="card-title">Demandas</h3>
                 </div>
                 <div className="card-body">
-                  {rows.length ? (
+                  {demands.length ? (
                     <TableContainer sx={{ borderRadius: 0 }} component={Paper}>
                       <Table aria-label="simple table">
                         <TableHead>
@@ -226,9 +258,9 @@ const NewSession = () => {
                           </TableRow>
                         </TableHead>
                         <TableBody>
-                          {rows.map((row, index) => (
+                          {demands.map((row, index) => (
                             <TableRow
-                              key={row.title}
+                              key={row.title + index}
                               sx={{
                                 "&:last-child td, &:last-child th": {
                                   border: 0,
@@ -237,7 +269,7 @@ const NewSession = () => {
                             >
                               <TableCell width={"45px"} padding={"none"}>
                                 <Checkbox
-                                  checked={row.check}
+                                  checked={row.addressed}
                                   onChange={() => handleCheckboxChange(index)}
                                 />
                               </TableCell>
@@ -256,12 +288,12 @@ const NewSession = () => {
                                 <div className="d-flex align-items-center">
                                   <div
                                     className={`circle ${getSemaphoreColor(
-                                      row.level
+                                      row.relevance
                                     )} selected`}
                                   />
-                                  {(row.level === "low" && "Baixa") ||
-                                    (row.level === "medium" && "Média") ||
-                                    (row.level === "high" && "Alta") ||
+                                  {(row.relevance === "low" && "Baixa") ||
+                                    (row.relevance === "medium" && "Média") ||
+                                    (row.relevance === "high" && "Alta") ||
                                     "N/A"}
                                 </div>
                               </TableCell>
@@ -286,22 +318,20 @@ const NewSession = () => {
                   >
                     <div className="input-sm-container margin-right-sm">
                       <StyledInput
-                        setValue={(value) =>
-                          handleDemmandChange("title", value)
-                        }
+                        setValue={(value) => handleDemandChange("title", value)}
                         type="primary-black"
                         placeholder={"Nova demanda"}
                         labelType={"insideLabel"}
                         icon={"fas fa-boxes-stacked"}
-                        value={demmandModel.title}
+                        value={demandModel.title}
                         onKeyUp={handleKeyPress}
                       ></StyledInput>
                     </div>
                     <div className="semaphore-container">
                       <Semaphore
-                        selectedLevel={demmandModel.level}
+                        selectedLevel={demandModel.relevance}
                         onChange={(value) =>
-                          handleDemmandChange("level", value)
+                          handleDemandChange("relevance", value)
                         }
                       />
                     </div>
@@ -310,7 +340,7 @@ const NewSession = () => {
                         id="add-demand-btn"
                         icon={"fas fa-plus"}
                         iconClass={"icon-xl"}
-                        onClick={handleAddDemmand}
+                        onClick={handleAddDemand}
                       />
                       <Tooltip anchorSelect="#add-demand-btn" place="top">
                         Adicionar Demanda

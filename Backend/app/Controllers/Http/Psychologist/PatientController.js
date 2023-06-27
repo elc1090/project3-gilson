@@ -36,7 +36,6 @@ class PatientController {
   }
 
   async show({ params, response }) {
-    console.log("aquiii");
     try {
       const patient = await Patient.find(params.id);
 
@@ -51,6 +50,28 @@ class PatientController {
       return response
         .status(500)
         .send({ message: "Erro ao buscar o paciente" });
+    }
+  }
+
+  async destroy({ params, response }) {
+    try {
+      const patient = await Patient.find(params.id);
+
+      if (!patient) {
+        return response
+          .status(404)
+          .send({ message: "Paciente não encontrado" });
+      }
+
+      await patient.delete();
+
+      return response
+        .status(200)
+        .send({ message: "Paciente excluído com sucesso" });
+    } catch (error) {
+      return response
+        .status(500)
+        .send({ message: "Erro ao excluir o paciente" });
     }
   }
 }
