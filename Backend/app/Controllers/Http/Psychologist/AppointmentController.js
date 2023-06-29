@@ -37,7 +37,7 @@ class AppointmentController {
         diagnosis.description = data.diagnosis_description;
         await diagnosis.save();
       }
-      
+
       if (data.demandsToSave.length > 0) {
         data.demandsToSave.forEach(async (demand) => {
           const newDemand = new Demand();
@@ -74,19 +74,10 @@ class AppointmentController {
           .status(404)
           .send({ message: "Agendamento não encontrado" });
       }
-
-      // Deletar diagnóstico relacionado
-      const diagnosis = await Diagnosis.findBy(
-        "appointment_id",
-        appointment.id
-      );
-      if (diagnosis) {
-        await diagnosis.delete();
-      }
-
+      
       // Deletar demandas relacionadas
       const demands = await Demand.query()
-        .where("appointment_id", appointment.id)
+        .where("appointment_id", appointment.appointment_id)
         .fetch();
       await Promise.all(demands.rows.map((demand) => demand.delete()));
 

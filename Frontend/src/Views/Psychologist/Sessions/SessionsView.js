@@ -42,7 +42,6 @@ const SessionsView = () => {
       try {
         const { data } = await api.get("psychologists/appointments");
         const sessionsData = data;
-        console.log(sessionsData);
         setSessions(sessionsData);
       } catch (error) {
         console.log(error.response.data.message);
@@ -76,6 +75,16 @@ const SessionsView = () => {
     const year = dateObj.getFullYear().toString();
 
     return `${day}/${month}/${year}`;
+  }
+
+  async function handleRemoveSession(id) {
+    try {
+      await api.delete(`psychologists/appointments/${id}`);
+      setSessions(sessions.filter((session) => session.appointment_id !== id));
+    } catch (error) {
+      console.log(error.response.data.message);
+      console.error("Erro na requisição", error.response);
+    }
   }
 
   return (
@@ -174,6 +183,9 @@ const SessionsView = () => {
                               type={"primary-black"}
                               iconOnly={true}
                               id="remove-appointment-btn"
+                              onClick={() =>
+                                handleRemoveSession(row.appointment_id)
+                              }
                             >
                               <i className="fas fa-trash custom-text-danger" />
                             </BaseButton>
