@@ -5,12 +5,19 @@ const Diagnosis = use("App/Models/Diagnosis");
 const Demand = use("App/Models/Demand");
 
 class AppointmentController {
-  async index({ response }) {
+  async index({ auth, response }) {
+    console.log(auth.user);
     try {
-      const appointments = await Appointment.query().with("patient").orderBy("created_at", "desc").fetch();
+      const appointments = await Appointment.query()
+        .with("patient")
+        .join("patients", "appointments.patient_id", "patients.patient_id")
+        .where("patients.psychologist_id", auth.user.id)
+        .orderBy("appointments.created_at", "desc") // Especificar 'created_at' como sendo da tabela 'appointments'
+        .fetch();
 
       return response.send(appointments);
     } catch (error) {
+      console.log(error);
       return response
         .status(500)
         .send({ message: "Erro ao buscar os agendamentos" });
@@ -19,7 +26,6 @@ class AppointmentController {
 
   async show({ params, response }) {
     try {
-      console.log(params.id);
       const appointment = await Appointment.query()
         .where("appointment_id", params.id)
         .with("patient")

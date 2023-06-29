@@ -27,6 +27,7 @@ function BaseInput({
         onChange={handleInputChange}
         value={value}
         onKeyUp={onKeyUp}
+        type={type}
         required
         className="form-field"
       />
