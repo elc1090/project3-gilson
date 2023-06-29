@@ -17,6 +17,7 @@ class PsychologistController {
   async show({ params, response }) {
     try {
       const psychologist = await Psychologist.query()
+        .with("user")
         .where("psychologist_id", params.id)
         .firstOrFail();
 
@@ -61,6 +62,26 @@ class PsychologistController {
       return response.status(401).send({ message: "Usuário não autenticado" });
     }
   }
+
+  async destroy({ params, response }) {
+  try {
+    const psychologist = await Psychologist.query()
+      .where("psychologist_id", params.id)
+      .firstOrFail();
+
+    const user = await User.query()
+      .where("id", psychologist.user_id)
+      .firstOrFail();
+
+    await user.delete();
+
+    return response.status(200).send({ message: "Psicólogo removido com sucesso" });
+  } catch (error) {
+    console.log(error);
+    return response.status(401).send({ message: "Usuário não autenticado" });
+  }
+}
+
 }
 
 module.exports = PsychologistController;

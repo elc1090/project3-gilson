@@ -71,7 +71,14 @@ const PsychologistsList = () => {
                   className="col-12 col-md-6 col-lg-4 col-xxl-3"
                   key={psychologist.user_id}
                 >
-                  <div className="row psychologist-card">
+                  <div
+                    className="row psychologist-card"
+                    onClick={() =>
+                      navigate(
+                        `/user/psychologists/${psychologist.psychologist_id}`
+                      )
+                    }
+                  >
                     <div className="d-flex col-12 justify-content-center">
                       <img
                         className={`profile-img mt-3 `}

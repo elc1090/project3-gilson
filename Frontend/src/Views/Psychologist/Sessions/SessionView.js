@@ -50,7 +50,6 @@ function SessionView() {
 
   function getFormatedDate(date) {
     const dateObj = new Date(date);
-    console.log(dateObj)
     // Obter os componentes da data (dia, mês, ano)
     const day = dateObj.getDate().toString().padStart(2, "0");
     const month = (dateObj.getMonth() + 1).toString().padStart(2, "0");

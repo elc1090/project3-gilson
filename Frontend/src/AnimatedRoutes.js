@@ -3,8 +3,10 @@ import Login from "./Views/Login";
 import AdminLayout from "./Layout/Admin/DashboardLayout";
 import DashboardAdmin from "./Views/Admin/Dashboard";
 import PsychologistsList from "./Views/Admin/Psychologists/PsychologistsList";
+import PsychologistView from "./Views/Admin/Psychologists/PsychologistView";
 import PsychologistsForm from "./Views/Admin/Psychologists/PsychologistsForm";
 import PsychologistLayout from "./Layout/Psychologist/DashboardLayout";
+
 import DashboardPsychologist from "./Views/Psychologist/Dashboard";
 import PathologiesView from "./Views/Psychologist/Pathologies/PathologiesView";
 import PatientsList from "./Views/Psychologist/Patients/PatientsList";
@@ -40,6 +42,15 @@ function AnimatedRoutes() {
           element={
             <AdminLayout>
               <PsychologistsList />
+            </AdminLayout>
+          }
+        />
+        <Route
+          exact
+          path="/user/psychologists/:psychologist_id"
+          element={
+            <AdminLayout>
+              <PsychologistView />
             </AdminLayout>
           }
         />

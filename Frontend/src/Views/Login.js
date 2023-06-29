@@ -37,7 +37,6 @@ function Login() {
       const user = { email, password };
 
       const { data } = await api.post(url, user);
-      console.log(data);
 
       if (data.success) {
         console.log("Login bem-sucedido");
