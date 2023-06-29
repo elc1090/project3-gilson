@@ -10,7 +10,7 @@ import BaseInput from '../../../Components/BaseInput/BaseInput';
 
 import api from '../../../Services/api';
 
-const PsychologistsView = () => {
+const PsychologistsForm = () => {
   const navigate = useNavigate();
   const [changingHeader] = useState(false);
   const [formData, setFormData] = useState({
@@ -127,4 +127,4 @@ const PsychologistsView = () => {
   );
 };
 
-export default PsychologistsView;
+export default PsychologistsForm;

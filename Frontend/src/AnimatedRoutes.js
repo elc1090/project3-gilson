@@ -2,7 +2,7 @@ import React from "react";
 import Login from "./Views/Login";
 import AdminLayout from "./Layout/Admin/DashboardLayout";
 import DashboardAdmin from "./Views/Admin/Dashboard";
-import PsychologistsView from "./Views/Admin/Psychologists/PsychologistsView";
+import PsychologistsList from "./Views/Admin/Psychologists/PsychologistsList";
 import PsychologistsForm from "./Views/Admin/Psychologists/PsychologistsForm";
 import PsychologistLayout from "./Layout/Psychologist/DashboardLayout";
 import DashboardPsychologist from "./Views/Psychologist/Dashboard";
@@ -39,7 +39,7 @@ function AnimatedRoutes() {
           path="/user/psychologists"
           element={
             <AdminLayout>
-              <PsychologistsView />
+              <PsychologistsList />
             </AdminLayout>
           }
         />

@@ -1,5 +1,5 @@
 import React from "react";
-import "./PsychologistsView.css";
+import "./PsychologistsList.css";
 import "../../PageHeader.css";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -9,7 +9,7 @@ import BaseButton from "../../../Components/BaseButton/BaseButton";
 
 import api from "../../../Services/api";
 
-const PsychologistsView = () => {
+const PsychologistsList = () => {
   const navigate = useNavigate();
   const [changingHeader] = useState(false);
   const [psychologists, setPsychologists] = useState([]);
@@ -95,4 +95,4 @@ const PsychologistsView = () => {
   );
 };
 
-export default PsychologistsView;
+export default PsychologistsList;
