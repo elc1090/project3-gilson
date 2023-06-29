@@ -20,6 +20,13 @@
   overflow-y: hidden;
 }
 
+.empty-modal {
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  opacity: 0.5;
+}
+
 .header-title {
   margin-top: 2em;
 }

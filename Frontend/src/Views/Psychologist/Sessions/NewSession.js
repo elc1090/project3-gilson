@@ -30,6 +30,7 @@ const NewSession = () => {
   const [patient, setPatient] = useState({});
   const [demands, setDemands] = useState([]);
   const [demandsToRemoval, setDemandsToRemoval] = useState([]);
+  const [demandsToUpdate, setDemandsToUpdate] = useState([]);
   const { patient_id } = useParams();
   const { seconds, minutes, hours } = useStopwatch({ autoStart: true });
 
@@ -162,6 +163,7 @@ const NewSession = () => {
 
   function handleFinishSession() {
     try {
+      const demandsToUpdate = demands.filter((demand) => demand.updated);
       const demandsToSave = demands.filter((demand) => !demand.demand_id);
       const duration = `${hours.toString().padStart(2, "0")}:${minutes
         .toString()
@@ -171,6 +173,7 @@ const NewSession = () => {
         ...formData,
         demandsToSave: demandsToSave,
         demandsToRemoval: demandsToRemoval,
+        demandsToUpdate: demandsToUpdate,
         duration: duration,
       };
 
@@ -187,9 +190,9 @@ const NewSession = () => {
 
   return (
     <div className="new-session-container">
-      <header className="new-session-header">
+      <header className="new-session-header d-none d-lg-block">
         <div className="d-flex row">
-          <div className="col-lg-6 inline-block">
+          <div className="col-lg-8 inline-block">
             <h1 className={`header-title ${getHeaderTextClass()}`}>
               <span>Sessão de {patient.name}</span>
             </h1>
@@ -200,7 +203,7 @@ const NewSession = () => {
               <span>{seconds.toString().padStart(2, "0")}</span>
             </h3>
           </div>
-          <div className="button-container d-flex col-lg-6 justify-content-end align-items-end">
+          <div className="button-container d-flex col-lg-4 justify-content-end align-items-end">
             <div className="margin-right-sm">
               <BaseButton type="primary-black" onClick={handleFinishSession}>
                 <span className="text-success text-bolder">
@@ -246,7 +249,7 @@ const NewSession = () => {
               </div>
             </div>
           </div>
-          <div className="col-lg-4">
+          <div className="col-lg-4 mt-4 mt-lg-0">
             <div className="full-height card p-0">
               <div className="card-header">
                 <h3 className="card-title">Diagnóstico</h3>
@@ -262,7 +265,7 @@ const NewSession = () => {
               </div>
             </div>
           </div>
-          <div className="col-lg-4">
+          <div className="col-lg-4 mt-4 mt-lg-0">
             <div className="full-height card p-0">
               <div className="card-header">
                 <h3 className="card-title">Demandas</h3>
@@ -289,6 +292,9 @@ const NewSession = () => {
                           </TableCell>
                           <TableCell padding={"none"} align="left">
                             <strong>Relevância</strong>
+                          </TableCell>
+                          <TableCell padding={"none"} align="center">
+                            <strong>Ações</strong>
                           </TableCell>
                         </TableRow>
                       </TableHead>
@@ -331,6 +337,16 @@ const NewSession = () => {
                                   (row.relevance === "high" && "Alta") ||
                                   "N/A"}
                               </div>
+                            </TableCell>
+                            <TableCell
+                              width={"80px"}
+                              padding={"none"}
+                              align="center"
+                            >
+                              <IconButton
+                                onClick={() => handleRemoveDemand(index)}
+                                icon={"fas fa-trash custom-text-danger"}
+                              />
                             </TableCell>
                           </TableRow>
                         ))}

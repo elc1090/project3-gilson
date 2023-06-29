@@ -20,7 +20,6 @@
 .empty-page {
   font-size: calc(2em);
   font-weight: bolder;
-  margin-top: 20%;
   color: rgba(0, 0, 0, 0.397);
   text-align: center;
 }

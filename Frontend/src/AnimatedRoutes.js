@@ -9,7 +9,7 @@ import DashboardPsychologist from "./Views/Psychologist/Dashboard";
 import PathologiesView from "./Views/Psychologist/Pathologies/PathologiesView";
 import PatientsView from "./Views/Psychologist/Patients/PatientsView";
 import PatientsForm from "./Views/Psychologist/Patients/PatientsForm";
-import SessionsView from "./Views/Psychologist/Sessions/SessionsView";
+import SessionsList from "./Views/Psychologist/Sessions/SessionsList";
 import NewSession from "./Views/Psychologist/Sessions/NewSession";
 
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -93,7 +93,7 @@ function AnimatedRoutes() {
           path="/psychologist/sessions"
           element={
             <PsychologistLayout>
-              <SessionsView />
+              <SessionsList />
             </PsychologistLayout>
           }
         />

@@ -41,18 +41,26 @@ class AppointmentController {
       if (data.demandsToSave.length > 0) {
         data.demandsToSave.forEach(async (demand) => {
           const newDemand = new Demand();
-          newDemand.description = demand.description;
           newDemand.patient_id = patient_id;
           newDemand.appointment_id = appointment.appointment_id;
           newDemand.title = demand.title;
+          newDemand.relevance = demand.relevance;
           await newDemand.save();
         });
       }
 
       if (data.demandsToRemoval.length > 0) {
-        data.demandsToRemove.forEach(async (demand_id) => {
+        data.demandsToRemoval.forEach(async (demand_id) => {
           const demandToRemove = await Demand.find(demand_id);
           await demandToRemove.delete();
+        });
+      }
+
+      if (data.demandsToUpdate.length > 0) {
+        data.demandsToUpdate.forEach(async (demand) => {
+          const demandToUpdate = await Demand.find(demand.demand_id);
+          demandToUpdate.addressed = demand.addressed;
+          await demandToUpdate.save();
         });
       }
 

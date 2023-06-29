@@ -1,5 +1,5 @@
 import React from "react";
-import "./SessionsView.css";
+import "./SessionsList.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -19,7 +19,7 @@ import Paper from "@mui/material/Paper";
 import BaseButton from "../../../Components/BaseButton/BaseButton";
 import api from "../../../Services/api";
 
-const SessionsView = () => {
+const SessionsList = () => {
   const navigate = useNavigate();
   const [changingHeader] = useState(false);
   const [sessions, setSessions] = useState([]);
@@ -260,7 +260,7 @@ const SessionsView = () => {
                     );
                   })
                 ) : (
-                  <span className="empty-page">Nenhum paciente cadastrado</span>
+                  <span className="empty-modal">Nenhum paciente cadastrado</span>
                 )}
               </div>
             </div>
@@ -271,4 +271,4 @@ const SessionsView = () => {
   );
 };
 
-export default SessionsView;
+export default SessionsList;

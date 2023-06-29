@@ -8,7 +8,6 @@ class DemandSchema extends Schema {
     this.create("demands", (table) => {
       table.increments("demand_id");
       table.string("title").notNullable();
-      table.string("description");
       table.boolean("addressed").defaultTo(false);
       table
         .integer("patient_id")

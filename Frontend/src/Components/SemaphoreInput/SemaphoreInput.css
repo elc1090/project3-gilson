@@ -19,7 +19,7 @@
 }
 
 .circle.yellow:hover {
-  background-color: rgb(187, 207, 0);
+  background-color: rgb(249, 237, 70);
 }
 
 .circle.red:hover {
@@ -40,7 +40,7 @@
 }
 
 .selected.yellow {
-  background-color: rgb(187, 207, 0);
+  background-color: rgb(249, 237, 70);
 }
 
 .selected.red {
