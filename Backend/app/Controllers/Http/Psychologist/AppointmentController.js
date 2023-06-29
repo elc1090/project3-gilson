@@ -44,6 +44,7 @@ class AppointmentController {
           newDemand.description = demand.description;
           newDemand.patient_id = patient_id;
           newDemand.appointment_id = appointment.appointment_id;
+          newDemand.title = demand.title;
           await newDemand.save();
         });
       }
@@ -74,7 +75,7 @@ class AppointmentController {
           .status(404)
           .send({ message: "Agendamento não encontrado" });
       }
-      
+
       // Deletar demandas relacionadas
       const demands = await Demand.query()
         .where("appointment_id", appointment.appointment_id)

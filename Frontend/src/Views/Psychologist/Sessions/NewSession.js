@@ -57,8 +57,40 @@ const NewSession = () => {
       }
     };
 
+    const loadPatientDemands = async () => {
+      try {
+        const { data } = await api.get(
+          `psychologists/patients/${patient_id}/demands`
+        );
+        const demandsData = data.demands;
+        setDemands(demandsData);
+      } catch (error) {
+        console.log(error.response.data.message);
+        console.error("Erro na requisição", error.response);
+      }
+    };
+
+    const loadPatientDiagnosis = async () => {
+      try {
+        const { data } = await api.get(
+          `psychologists/patients/${patient_id}/diagnosis`
+        );
+        const diagnosisData = data.diagnosis;
+        setFormData((prevData) => ({
+          ...prevData,
+          diagnosis_description: diagnosisData[0].description,
+          diagnosis_id: diagnosisData[0].diagnosis_id,
+        }));
+      } catch (error) {
+        console.log(error.response.data.message);
+        console.error("Erro na requisição", error.response);
+      }
+    };
+
     const fetchData = async () => {
       await loadPatient();
+      await loadPatientDemands();
+      await loadPatientDiagnosis();
     };
 
     fetchData();
@@ -130,7 +162,7 @@ const NewSession = () => {
 
   function handleFinishSession() {
     try {
-      const demandsToSave = demands.filter((demand) => demand.demand_id);
+      const demandsToSave = demands.filter((demand) => !demand.demand_id);
       const duration = `${hours.toString().padStart(2, "0")}:${minutes
         .toString()
         .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
@@ -272,7 +304,7 @@ const NewSession = () => {
                           >
                             <TableCell width={"45px"} padding={"none"}>
                               <Checkbox
-                                checked={row.addressed}
+                                checked={Boolean(row.addressed)}
                                 onChange={() => handleCheckboxChange(index)}
                               />
                             </TableCell>

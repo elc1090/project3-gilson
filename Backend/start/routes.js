@@ -25,6 +25,12 @@ Route.group(() => {
 
 Route.group(() => {
   Route.resource("patients", "Psychologist/PatientController").apiOnly();
+  Route.get("patients/:id/demands", "Psychologist/PatientController.demands");
+  Route.get(
+    "patients/:id/diagnosis",
+    "Psychologist/PatientController.diagnosis"
+  );
+
   Route.resource(
     "appointments",
     "Psychologist/AppointmentController"

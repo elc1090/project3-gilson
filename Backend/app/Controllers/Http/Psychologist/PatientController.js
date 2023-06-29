@@ -1,6 +1,8 @@
 "use strict";
 
 const Patient = use("App/Models/Patient");
+const Demand = use("App/Models/Demand");
+const Diagnosis = use("App/Models/Diagnosis");
 
 class PatientController {
   async index({ auth, response }) {
@@ -72,6 +74,77 @@ class PatientController {
       return response
         .status(500)
         .send({ message: "Erro ao excluir o paciente" });
+    }
+  }
+
+  async update({ params, request, response }) {
+    try {
+      const patient = await Patient.find(params.id);
+
+      if (!patient) {
+        return response
+          .status(404)
+          .send({ message: "Paciente não encontrado" });
+      }
+
+      const { name, email, cpf } = request.only(["name", "email", "cpf"]);
+
+      patient.name = name;
+      patient.email = email;
+      patient.cpf = cpf;
+      await patient.save();
+
+      return response
+        .status(200)
+        .send({ message: "Paciente atualizado com sucesso" });
+    } catch (error) {
+      return response
+        .status(500)
+        .send({ message: "Erro ao atualizar o paciente" });
+    }
+  }
+
+  async demands({ params, response }) {
+    try {
+      const patient = await Patient.find(params.id);
+
+      if (!patient) {
+        return response
+          .status(404)
+          .send({ message: "Paciente não encontrado" });
+      }
+
+      const demands = await Demand.query()
+        .where("patient_id", patient.patient_id)
+        .fetch();
+
+      return response.json({ demands });
+    } catch (error) {
+      return response
+        .status(500)
+        .send({ message: "Erro ao buscar as demandas do paciente" });
+    }
+  }
+
+  async diagnosis({ params, response }) {
+    try {
+      const patient = await Patient.find(params.id);
+
+      if (!patient) {
+        return response
+          .status(404)
+          .send({ message: "Paciente não encontrado" });
+      }
+
+      const diagnosis = await Diagnosis.query()
+        .where("patient_id", patient.patient_id)
+        .fetch();
+
+      return response.json({ diagnosis });
+    } catch (error) {
+      return response
+        .status(500)
+        .send({ message: "Erro ao buscar o diagnóstico do paciente" });
     }
   }
 }
