@@ -6,7 +6,6 @@ const Demand = use("App/Models/Demand");
 
 class AppointmentController {
   async index({ auth, response }) {
-    console.log(auth.user);
     try {
       const appointments = await Appointment.query()
         .with("patient")
@@ -74,6 +73,7 @@ class AppointmentController {
           newDemand.appointment_id = appointment.appointment_id;
           newDemand.title = demand.title;
           newDemand.relevance = demand.relevance;
+          newDemand.addressed = demand.addressed;
           await newDemand.save();
         });
       }

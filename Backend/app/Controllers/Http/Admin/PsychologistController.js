@@ -14,6 +14,19 @@ class PsychologistController {
     }
   }
 
+  async show({ params, response }) {
+    try {
+      const psychologist = await Psychologist.query()
+        .where("psychologist_id", params.id)
+        .firstOrFail();
+
+      return response.json({ psychologist });
+    } catch (error) {
+      console.log(error);
+      return response.status(401).send({ message: "Usuário não autenticado" });
+    }
+  }
+
   async store({ request, response }) {
     try {
       // Obtém os dados do novo psicólogo a partir do corpo da requisição
