@@ -10,6 +10,9 @@ class PatientSchema extends Schema {
       table.string("name").notNullable()
       table.string("email").notNullable()
       table.string("cpf")
+      table.string("phone")
+      table.string("gender")
+      table.string("birth_date")
       table
         .integer("psychologist_id")
         .unsigned()

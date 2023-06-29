@@ -20,13 +20,23 @@ class PatientController {
 
   async store({ request, response, auth }) {
     try {
-      const { name, email, cpf } = request.only(["name", "email", "cpf"]);
+      const { name, email, cpf, phone, gender, birth_date } = request.only([
+        "name",
+        "email",
+        "cpf",
+        "phone",
+        "gender",
+        "birth_date",
+      ]);
 
       const patient = new Patient();
       patient.name = name;
       patient.email = email;
       patient.cpf = cpf;
       patient.psychologist_id = auth.user.id;
+      patient.phone = phone;
+      patient.gender = gender;
+      patient.birth_date = birth_date;
       await patient.save();
 
       return response
