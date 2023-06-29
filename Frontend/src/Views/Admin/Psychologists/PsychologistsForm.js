@@ -95,6 +95,7 @@ const PsychologistsView = () => {
           </div>
           <div className="col-lg-4">
             <BaseInput
+              mask="999.999.999-99"
               value={formData.cpf}
               setValue={(value) => handleChange('cpf', value)}
               placeholder={'CPF'}
@@ -105,6 +106,7 @@ const PsychologistsView = () => {
           </div>
           <div className="col-lg-4">
             <BaseInput
+              mask="99/99999"
               value={formData.crp}
               setValue={(value) => handleChange('crp', value)}
               placeholder={'CRP'}

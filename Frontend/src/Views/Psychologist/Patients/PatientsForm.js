@@ -71,6 +71,7 @@ function PatientsForm() {
           </div>
           <div className="col-lg-6 col-xl-4">
             <BaseInput
+              mask="99/99/9999"
               value={formData.birth_date}
               setValue={(value) => handleChange("birth_date", value)}
               placeholder={"Data de Nascimento"}
@@ -80,22 +81,23 @@ function PatientsForm() {
             />
           </div>
           <div className="col-lg-6 col-xl-4">
-          <BaseDropdown
-            value={formData.gender}
-            setValue={(value) => handleChange("gender", value)}
-            placeholder={"Sexo"}
-            icon="fas fa-genderless"
-            label={"Sexo"}
-          >
-            {genderOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </BaseDropdown>
+            <BaseDropdown
+              value={formData.gender}
+              setValue={(value) => handleChange("gender", value)}
+              placeholder={"Sexo"}
+              icon="fas fa-genderless"
+              label={"Sexo"}
+            >
+              {genderOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </BaseDropdown>
           </div>
           <div className="col-lg-4">
             <BaseInput
+              mask="999.999.999-99"
               value={formData.cpf}
               setValue={(value) => handleChange("cpf", value)}
               placeholder={"CPF"}
@@ -122,6 +124,7 @@ function PatientsForm() {
 
           <div className="col-md-6">
             <BaseInput
+              mask="(99) 9999-9999"
               value={formData.phone}
               setValue={(value) => handleChange("phone", value)}
               placeholder={"Telefone"}

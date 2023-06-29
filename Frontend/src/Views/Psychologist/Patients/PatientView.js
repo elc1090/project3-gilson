@@ -48,30 +48,6 @@ function PatientView() {
     }
   }
 
-  const getFormatedPhone = (value) => {
-    const formatedPhone = `(${value?.substring(0, 2)}) ${value?.substring(
-      2,
-      6
-    )}-${value?.substring(6)}`;
-    return formatedPhone;
-  };
-
-  const getFormatedCPF = (value) => {
-    const formatedCPF = `${value?.substring(0, 3)}.${value?.substring(
-      3,
-      6
-    )}.${value?.substring(6, 9)}-${value?.substring(9)}`;
-    return formatedCPF;
-  };
-
-  const getFormatedBirthDate = (value) => {
-    const formatedBirthDate = `${value?.substring(0, 2)}/${value?.substring(
-      2,
-      4
-    )}/${value?.substring(4, 8)}`;
-    return formatedBirthDate;
-  };
-
   return (
     <div className="view-patient-container">
       <header className="view-patient-header d-none d-lg-block">
@@ -120,7 +96,7 @@ function PatientView() {
                       <i className="fas fa-calendar" /> Data de Nascimento:
                     </h5>
                     <h5 className="text-muted">
-                      {getFormatedBirthDate(patient.birth_date)}
+                      {patient.birth_date}
                     </h5>
                   </div>
                   <div className="col-lg-3 mt-4">
@@ -128,7 +104,7 @@ function PatientView() {
                       <i className="fas fa-phone" /> Telefone:
                     </h5>
                     <h5 className="text-muted">
-                      {getFormatedPhone(patient.phone)}
+                      {patient.phone}
                     </h5>
                   </div>
                   <div className="col-lg-3 mt-4">
@@ -136,7 +112,7 @@ function PatientView() {
                       <i className="fas fa-id-card" /> CPF:
                     </h5>
                     <h5 className="text-muted">
-                      {getFormatedCPF(patient.cpf)}
+                      {patient.cpf}
                     </h5>
                   </div>
                 </div>

@@ -1,20 +1,26 @@
-/* eslint-disable require-jsdoc */
-/* eslint-disable max-len */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React from "react";
 import "./BaseInput.css";
+import InputMask from "react-input-mask";
 
-function BaseInput({ placeholder, value, setValue, label, icon, type, onKeyUp}) {
+function BaseInput({
+  placeholder,
+  value,
+  setValue,
+  label,
+  icon,
+  type,
+  mask,
+  onKeyUp,
+}) {
   const handleInputChange = (event) => {
     setValue(event.target.value);
   };
 
   return (
     <div className="form-group field">
-      <input
-        type={type}
-        className="form-field"
+      <InputMask
+        mask={mask}
+        maskChar=" "
         placeholder={placeholder}
         name={label}
         id={label}
@@ -22,6 +28,7 @@ function BaseInput({ placeholder, value, setValue, label, icon, type, onKeyUp}) 
         value={value}
         onKeyUp={onKeyUp}
         required
+        className="form-field"
       />
       <label htmlFor={label} className="form-label">
         {" "}
