@@ -7,13 +7,36 @@ const Demand = use("App/Models/Demand");
 class AppointmentController {
   async index({ response }) {
     try {
-      const appointments = await Appointment.query().with("patient").fetch();
+      const appointments = await Appointment.query().with("patient").orderBy("created_at", "desc").fetch();
 
       return response.send(appointments);
     } catch (error) {
       return response
         .status(500)
         .send({ message: "Erro ao buscar os agendamentos" });
+    }
+  }
+
+  async show({ params, response }) {
+    try {
+      console.log(params.id);
+      const appointment = await Appointment.query()
+        .where("appointment_id", params.id)
+        .with("patient")
+        .firstOrFail();
+
+      const demands = await Demand.query()
+        .where("appointment_id", params.id)
+        .fetch();
+
+      const appointmentData = appointment.toJSON();
+      appointmentData.demands = demands.toJSON();
+
+      return response.send({ appointment: appointmentData });
+    } catch (error) {
+      return response
+        .status(500)
+        .send({ message: "Erro ao buscar o agendamento" });
     }
   }
 

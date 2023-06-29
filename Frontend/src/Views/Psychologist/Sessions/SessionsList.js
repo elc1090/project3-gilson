@@ -168,6 +168,11 @@ const SessionsList = () => {
                               type={"primary-black"}
                               iconOnly={true}
                               id="view-appointment-btn"
+                              onClick={() =>
+                                navigate(
+                                  `/psychologist/sessions/${row.appointment_id}`
+                                )
+                              }
                             >
                               <i className="fas fa-eye custom-text-info" />
                             </BaseButton>
@@ -260,7 +265,9 @@ const SessionsList = () => {
                     );
                   })
                 ) : (
-                  <span className="empty-modal">Nenhum paciente cadastrado</span>
+                  <span className="empty-modal">
+                    Nenhum paciente cadastrado
+                  </span>
                 )}
               </div>
             </div>

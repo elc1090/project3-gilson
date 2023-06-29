@@ -11,6 +11,7 @@ import PatientsView from "./Views/Psychologist/Patients/PatientsView";
 import PatientsForm from "./Views/Psychologist/Patients/PatientsForm";
 import SessionsList from "./Views/Psychologist/Sessions/SessionsList";
 import NewSession from "./Views/Psychologist/Sessions/NewSession";
+import SessionView from "./Views/Psychologist/Sessions/SessionView";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 
@@ -103,6 +104,15 @@ function AnimatedRoutes() {
           element={
             <PsychologistLayout>
               <NewSession />
+            </PsychologistLayout>
+          }
+        />
+        <Route
+          exact
+          path="/psychologist/sessions/:session_id"
+          element={
+            <PsychologistLayout>
+              <SessionView />
             </PsychologistLayout>
           }
         />

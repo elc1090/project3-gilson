@@ -52,7 +52,7 @@
   overflow-y: auto;
 }
 
-.ql-editor {
+.styled-ql .ql-editor {
   min-height: 500px;
   max-height: 500px;
   overflow-y: auto;

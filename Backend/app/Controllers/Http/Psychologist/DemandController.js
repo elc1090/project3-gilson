@@ -16,10 +16,9 @@ class DemandController {
 
   async store({ request, response }) {
     try {
-      const { title, description, patient_id, appointment_id, relevance } =
+      const { title, patient_id, appointment_id, relevance } =
         request.only([
           "title",
-          "description",
           "patient_id",
           "appointment_id",
           "relevance",
@@ -27,7 +26,6 @@ class DemandController {
 
       const demand = new Demand();
       demand.title = title;
-      demand.description = description;
       demand.patient_id = patient_id;
       demand.appointment_id = appointment_id;
       demand.relevance = relevance;

@@ -30,7 +30,6 @@ const NewSession = () => {
   const [patient, setPatient] = useState({});
   const [demands, setDemands] = useState([]);
   const [demandsToRemoval, setDemandsToRemoval] = useState([]);
-  const [demandsToUpdate, setDemandsToUpdate] = useState([]);
   const { patient_id } = useParams();
   const { seconds, minutes, hours } = useStopwatch({ autoStart: true });
 
@@ -77,11 +76,13 @@ const NewSession = () => {
           `psychologists/patients/${patient_id}/diagnosis`
         );
         const diagnosisData = data.diagnosis;
-        setFormData((prevData) => ({
-          ...prevData,
-          diagnosis_description: diagnosisData[0].description,
-          diagnosis_id: diagnosisData[0].diagnosis_id,
-        }));
+        if (diagnosisData.length > 0) {
+          setFormData((prevData) => ({
+            ...prevData,
+            diagnosis_description: diagnosisData[0].description,
+            diagnosis_id: diagnosisData[0].diagnosis_id,
+          }));
+        }
       } catch (error) {
         console.log(error.response.data.message);
         console.error("Erro na requisição", error.response);
@@ -134,6 +135,8 @@ const NewSession = () => {
   };
 
   function handleAddDemand() {
+    if (!demandModel.title || !demandModel.relevance) return;
+
     const updatedDemands = [...demands];
     updatedDemands.push({
       addressed: false,
@@ -190,7 +193,7 @@ const NewSession = () => {
 
   return (
     <div className="new-session-container">
-      <header className="new-session-header d-none d-lg-block">
+      <header className="new-session-header">
         <div className="d-flex row">
           <div className="col-lg-8 inline-block">
             <h1 className={`header-title ${getHeaderTextClass()}`}>
@@ -240,6 +243,7 @@ const NewSession = () => {
               </div>
               <div className="card-body">
                 <ReactQuill
+                  className="styled-ql"
                   value={formData.general_notes}
                   onChange={(value) =>
                     handleQuillChanges("general_notes", value)
@@ -256,6 +260,7 @@ const NewSession = () => {
               </div>
               <div className="card-body">
                 <ReactQuill
+                  className="styled-ql"
                   value={formData.diagnosis_description}
                   onChange={(value) =>
                     handleQuillChanges("diagnosis_description", value)
