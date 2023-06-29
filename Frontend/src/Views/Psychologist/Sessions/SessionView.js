@@ -29,7 +29,6 @@ function SessionView() {
         const { data } = await api.get(
           `psychologists/appointments/${session_id}`
         );
-        console.log(data);
         setSession(data.appointment);
       } catch (error) {
         console.log(error.response.data.message);
@@ -97,7 +96,7 @@ function SessionView() {
               <div className="card-header">
                 <h3 className="card-title">Anotações Gerais</h3>
               </div>
-              <div className="session-view card-body">
+              <div className="card-body">
                 <ReactQuill
                   value={session.general_notes}
                   key={"1_react_quill"}

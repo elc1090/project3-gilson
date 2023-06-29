@@ -1,5 +1,5 @@
 import React from "react";
-import "./PatientsView.css";
+import "./PatientsList.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -7,7 +7,7 @@ import BaseButton from "../../../Components/BaseButton/BaseButton";
 
 import api from "../../../Services/api";
 
-const PatientsView = () => {
+const PatientsList = () => {
   const navigate = useNavigate();
   const [changingHeader] = useState(false);
   const [patients, setPatients] = useState([]);
@@ -67,7 +67,12 @@ const PatientsView = () => {
                   className="col-12 col-md-6 col-lg-4 col-xxl-3"
                   key={patient.patient_id}
                 >
-                  <div className="row patient-card">
+                  <div
+                    className="row patient-card"
+                    onClick={() =>
+                      navigate(`/psychologist/patients/${patient.patient_id}`)
+                    }
+                  >
                     <div className="d-flex col-12 justify-content-center">
                       <img
                         className={`profile-img mt-3 `}
@@ -91,4 +96,4 @@ const PatientsView = () => {
   );
 };
 
-export default PatientsView;
+export default PatientsList;

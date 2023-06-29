@@ -7,8 +7,9 @@ import PsychologistsForm from "./Views/Admin/Psychologists/PsychologistsForm";
 import PsychologistLayout from "./Layout/Psychologist/DashboardLayout";
 import DashboardPsychologist from "./Views/Psychologist/Dashboard";
 import PathologiesView from "./Views/Psychologist/Pathologies/PathologiesView";
-import PatientsView from "./Views/Psychologist/Patients/PatientsView";
+import PatientsList from "./Views/Psychologist/Patients/PatientsList";
 import PatientsForm from "./Views/Psychologist/Patients/PatientsForm";
+import PatientView from "./Views/Psychologist/Patients/PatientView";
 import SessionsList from "./Views/Psychologist/Sessions/SessionsList";
 import NewSession from "./Views/Psychologist/Sessions/NewSession";
 import SessionView from "./Views/Psychologist/Sessions/SessionView";
@@ -76,7 +77,16 @@ function AnimatedRoutes() {
           path="/psychologist/patients"
           element={
             <PsychologistLayout>
-              <PatientsView />
+              <PatientsList />
+            </PsychologistLayout>
+          }
+        />
+        <Route
+          exact
+          path="/psychologist/patients/:patient_id"
+          element={
+            <PsychologistLayout>
+              <PatientView />
             </PsychologistLayout>
           }
         />

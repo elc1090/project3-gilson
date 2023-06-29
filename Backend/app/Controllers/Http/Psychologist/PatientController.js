@@ -51,13 +51,20 @@ class PatientController {
     try {
       const patient = await Patient.find(params.id);
 
+      const diagnosis = await Diagnosis.query()
+        .where("patient_id", patient.patient_id)
+        .fetch();
+
       if (!patient) {
         return response
           .status(404)
           .send({ message: "Paciente não encontrado" });
       }
 
-      return response.json({ patient });
+      const patientData = patient.toJSON();
+      patientData.diagnosis = diagnosis.toJSON();
+
+      return response.json({ patient: patientData });
     } catch (error) {
       return response
         .status(500)
