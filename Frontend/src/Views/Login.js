@@ -43,7 +43,8 @@ function Login() {
         console.log("Login bem-sucedido");
         login(data.auth.token, data.roles);
 
-        navigate(`/${data.roles}/dashboard`);
+        if (data.roles === "psychologist") navigate("/psychologist/patients");
+        if (data.roles === "user") navigate("/user/psychologists");
       }
     } catch (error) {
       setErrorMessage(error.response.data.message);

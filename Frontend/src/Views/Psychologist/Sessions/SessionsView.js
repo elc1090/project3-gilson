@@ -3,6 +3,7 @@ import "./SessionsView.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { Tooltip } from "react-tooltip";
 
 import Backdrop from "@mui/material/Backdrop";
 import Modal from "@mui/material/Modal";
@@ -74,7 +75,7 @@ const SessionsView = () => {
     const month = (dateObj.getMonth() + 1).toString().padStart(2, "0");
     const year = dateObj.getFullYear().toString();
 
-    return `${day}-${month}-${year}`;
+    return `${day}/${month}/${year}`;
   }
 
   return (
@@ -98,15 +99,41 @@ const SessionsView = () => {
         </div>
         <div className="row">
           {sessions?.length ? (
-            <TableContainer sx={{ borderRadius: 0 }} component={Paper}>
-              <Table aria-label="simple table">
+            <TableContainer
+              sx={{ borderRadius: 0 }}
+              component={Paper}
+              style={{ maxHeight: 550 }}
+            >
+              <Table aria-label="simple table" stickyHeader>
                 <TableHead>
                   <TableRow>
-                    <TableCell>#</TableCell>
-                    <TableCell>Data</TableCell>
-                    <TableCell>Paciente</TableCell>
-                    <TableCell>Duração</TableCell>
-                    <TableCell>Ações</TableCell>
+                    <TableCell>
+                      <strong>#</strong>
+                    </TableCell>
+                    <TableCell>
+                      <strong>
+                        <i className="fas fa-calendar mr-3" />
+                        Data
+                      </strong>
+                    </TableCell>
+                    <TableCell>
+                      <strong>
+                        <i className="fas fa-user mr-3" />
+                        Paciente
+                      </strong>
+                    </TableCell>
+                    <TableCell>
+                      <strong>
+                        <i className="fas fa-clock mr-3" />
+                        Duração
+                      </strong>
+                    </TableCell>
+                    <TableCell>
+                      <strong>
+                        <i className="fas fa-ellipsis-h mr-3" />
+                        Ações
+                      </strong>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -120,12 +147,45 @@ const SessionsView = () => {
                       }}
                     >
                       <TableCell component="th" scope="row">
-                        {index}
+                        <strong>{index}</strong>
                       </TableCell>
                       <TableCell>{getFormatedDate(row.created_at)}</TableCell>
                       <TableCell>{row.patient.name}</TableCell>
                       <TableCell>{row.duration}</TableCell>
-                      <TableCell> </TableCell>
+                      <TableCell>
+                        <div className="d-flex">
+                          <div className="mr-3">
+                            <BaseButton
+                              type={"primary-black"}
+                              iconOnly={true}
+                              id="view-appointment-btn"
+                            >
+                              <i className="fas fa-eye custom-text-info" />
+                            </BaseButton>
+                            <Tooltip
+                              anchorSelect="#view-appointment-btn"
+                              place="bottom"
+                            >
+                              Visualizar Sessão
+                            </Tooltip>
+                          </div>
+                          <div className="mr-3">
+                            <BaseButton
+                              type={"primary-black"}
+                              iconOnly={true}
+                              id="remove-appointment-btn"
+                            >
+                              <i className="fas fa-trash custom-text-danger" />
+                            </BaseButton>
+                            <Tooltip
+                              anchorSelect="#remove-appointment-btn"
+                              place="bottom"
+                            >
+                              Excluir Sessão
+                            </Tooltip>
+                          </div>
+                        </div>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

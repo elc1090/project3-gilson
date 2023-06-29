@@ -10,12 +10,11 @@ const BaseButton = React.forwardRef(
         id={id}
         ref={ref}
         type={type}
-        className={"base-btn " + type}
+        className={"base-btn " + type + (iconOnly ? " icon-only" : "")}
         onClick={onClick}
       >
-        {iconOnly && <i className={icon}></i>}
-        {!iconOnly && icon && <i className={icon}></i>}
-        {!iconOnly && children && children}
+        {icon && <i className={icon}></i>}
+        {children && children}
       </button>
     );
   }

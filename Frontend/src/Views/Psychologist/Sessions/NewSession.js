@@ -197,155 +197,157 @@ const NewSession = () => {
       </header>
 
       <div className="page-body">
-        <div className="d-flex row">
+        <div className="row h-100">
           <div className="col-lg-4">
-            <div className="row">
-              <div className="card p-0">
-                <div className="card-header">
-                  <h3 className="card-title">Anotações Gerais</h3>
-                </div>
-                <div className="card-body">
-                  <ReactQuill
-                    value={formData.general_notes}
-                    onChange={(value) =>
-                      handleQuillChanges("general_notes", value)
-                    }
-                    key={"1_react_quill"}
-                  />
-                </div>
+            <div className="full-height card p-0">
+              <div className="card-header">
+                <h3 className="card-title">Anotações Gerais</h3>
               </div>
-            </div>
-            <div className="row mt-4">
-              <div className="card p-0">
-                <div className="card-header">
-                  <h3 className="card-title">Diagnóstico</h3>
-                </div>
-                <div className="card-body">
-                  <ReactQuill
-                    value={formData.diagnosis_description}
-                    onChange={(value) =>
-                      handleQuillChanges("diagnosis_description", value)
-                    }
-                    key={"2_react_quill"}
-                  />
-                </div>
+              <div className="card-body">
+                <ReactQuill
+                  value={formData.general_notes}
+                  onChange={(value) =>
+                    handleQuillChanges("general_notes", value)
+                  }
+                  key={"1_react_quill"}
+                />
               </div>
             </div>
           </div>
-          <div className="col-lg-4 demand-column">
-            <div className="row h-100">
-              <div className="full-height card p-0">
-                <div className="card-header">
-                  <h3 className="card-title">Demandas</h3>
-                </div>
-                <div className="card-body">
-                  {demands.length ? (
-                    <TableContainer sx={{ borderRadius: 0 }} component={Paper}>
-                      <Table aria-label="simple table">
-                        <TableHead>
-                          <TableRow>
+          <div className="col-lg-4">
+            <div className="full-height card p-0">
+              <div className="card-header">
+                <h3 className="card-title">Diagnóstico</h3>
+              </div>
+              <div className="card-body">
+                <ReactQuill
+                  value={formData.diagnosis_description}
+                  onChange={(value) =>
+                    handleQuillChanges("diagnosis_description", value)
+                  }
+                  key={"2_react_quill"}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4">
+            <div className="full-height card p-0">
+              <div className="card-header">
+                <h3 className="card-title">Demandas</h3>
+              </div>
+              <div className="card-body">
+                {demands.length ? (
+                  <TableContainer
+                    sx={{ borderRadius: 0 }}
+                    component={Paper}
+                    style={{ maxHeight: 472 }}
+                  >
+                    <Table aria-label="simple table" stickyHeader>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell
+                            padding={"none"}
+                            sx={{ maxWidth: "10px" }}
+                            align="left"
+                          >
+                            <Checkbox disabled />
+                          </TableCell>
+                          <TableCell padding={"none"}>
+                            <strong>Título</strong>
+                          </TableCell>
+                          <TableCell padding={"none"} align="left">
+                            <strong>Relevância</strong>
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {demands.map((row, index) => (
+                          <TableRow
+                            key={row.title + index}
+                            sx={{
+                              "&:last-child td, &:last-child th": {
+                                border: 0,
+                              },
+                            }}
+                          >
+                            <TableCell width={"45px"} padding={"none"}>
+                              <Checkbox
+                                checked={row.addressed}
+                                onChange={() => handleCheckboxChange(index)}
+                              />
+                            </TableCell>
                             <TableCell
                               padding={"none"}
-                              sx={{ maxWidth: "10px" }}
+                              component="th"
+                              scope="row"
+                            >
+                              {row.title}
+                            </TableCell>
+                            <TableCell
+                              width={"20%"}
+                              padding={"none"}
                               align="left"
                             >
-                              <Checkbox disabled />
-                            </TableCell>
-                            <TableCell padding={"none"}>Título</TableCell>
-                            <TableCell padding={"none"} align="left">
-                              Relevância
+                              <div className="d-flex align-items-center">
+                                <div
+                                  className={`circle ${getSemaphoreColor(
+                                    row.relevance
+                                  )} selected`}
+                                />
+                                {(row.relevance === "low" && "Baixa") ||
+                                  (row.relevance === "medium" && "Média") ||
+                                  (row.relevance === "high" && "Alta") ||
+                                  "N/A"}
+                              </div>
                             </TableCell>
                           </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {demands.map((row, index) => (
-                            <TableRow
-                              key={row.title + index}
-                              sx={{
-                                "&:last-child td, &:last-child th": {
-                                  border: 0,
-                                },
-                              }}
-                            >
-                              <TableCell width={"45px"} padding={"none"}>
-                                <Checkbox
-                                  checked={row.addressed}
-                                  onChange={() => handleCheckboxChange(index)}
-                                />
-                              </TableCell>
-                              <TableCell
-                                padding={"none"}
-                                component="th"
-                                scope="row"
-                              >
-                                {row.title}
-                              </TableCell>
-                              <TableCell
-                                width={"20%"}
-                                padding={"none"}
-                                align="left"
-                              >
-                                <div className="d-flex align-items-center">
-                                  <div
-                                    className={`circle ${getSemaphoreColor(
-                                      row.relevance
-                                    )} selected`}
-                                  />
-                                  {(row.relevance === "low" && "Baixa") ||
-                                    (row.relevance === "medium" && "Média") ||
-                                    (row.relevance === "high" && "Alta") ||
-                                    "N/A"}
-                                </div>
-                              </TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  ) : (
-                    <div className="d-flex justify-content-center align-items-center h-100">
-                      <span className="text-muted">
-                        Nenhuma demanda adicionada
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <div className="card-footer">
-                  <div
-                    className="d-flex footer-container align-items-center justify-content-center"
-                    tabIndex={0}
-                    onKeyUp={handleKeyPress}
-                  >
-                    <div className="input-sm-container margin-right-sm">
-                      <StyledInput
-                        setValue={(value) => handleDemandChange("title", value)}
-                        type="primary-black"
-                        placeholder={"Nova demanda"}
-                        labelType={"insideLabel"}
-                        icon={"fas fa-boxes-stacked"}
-                        value={demandModel.title}
-                        onKeyUp={handleKeyPress}
-                      ></StyledInput>
-                    </div>
-                    <div className="semaphore-container">
-                      <Semaphore
-                        selectedLevel={demandModel.relevance}
-                        onChange={(value) =>
-                          handleDemandChange("relevance", value)
-                        }
-                      />
-                    </div>
-                    <div>
-                      <IconButton
-                        id="add-demand-btn"
-                        icon={"fas fa-plus"}
-                        iconClass={"icon-xl"}
-                        onClick={handleAddDemand}
-                      />
-                      <Tooltip anchorSelect="#add-demand-btn" place="top">
-                        Adicionar Demanda
-                      </Tooltip>
-                    </div>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                ) : (
+                  <div className="d-flex justify-content-center align-items-center h-100">
+                    <span className="text-muted">
+                      Nenhuma demanda adicionada
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div className="card-footer">
+                <div
+                  className="d-flex footer-container align-items-center justify-content-center"
+                  tabIndex={0}
+                  onKeyUp={handleKeyPress}
+                >
+                  <div className="input-sm-container margin-right-sm">
+                    <StyledInput
+                      setValue={(value) => handleDemandChange("title", value)}
+                      type="primary-black"
+                      placeholder={"Nova demanda"}
+                      labelType={"insideLabel"}
+                      icon={"fas fa-boxes-stacked"}
+                      value={demandModel.title}
+                      onKeyUp={handleKeyPress}
+                    ></StyledInput>
+                  </div>
+                  <div className="semaphore-container">
+                    <Semaphore
+                      selectedLevel={demandModel.relevance}
+                      onChange={(value) =>
+                        handleDemandChange("relevance", value)
+                      }
+                    />
+                  </div>
+                  <div>
+                    <IconButton
+                      id="add-demand-btn"
+                      icon={"fas fa-plus"}
+                      iconClass={"icon-xl"}
+                      onClick={handleAddDemand}
+                    />
+                    <Tooltip anchorSelect="#add-demand-btn" place="top">
+                      Adicionar Demanda
+                    </Tooltip>
                   </div>
                 </div>
               </div>

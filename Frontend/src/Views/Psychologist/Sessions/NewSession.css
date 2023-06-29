@@ -53,8 +53,8 @@
 }
 
 .ql-editor {
-  min-height: 200px;
-  max-height: 300px;
+  min-height: 500px;
+  max-height: 500px;
   overflow-y: auto;
 }
 
@@ -161,6 +161,14 @@
 
 .btn-container {
   margin-bottom: 3em;
+}
+
+.custom-text-danger {
+  color: rgb(255, 62, 62);
+}
+
+.custom-text-info {
+  color: rgb(100, 167, 255);
 }
 
 @font-face {

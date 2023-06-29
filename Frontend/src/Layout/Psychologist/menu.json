@@ -1,12 +1,5 @@
 [
     {
-      "id": 1,
-      "title": "Dashboard",
-      "link": "/psychologist/dashboard",
-      "icon": "fas fa-home",
-      "role": "dashboard"
-    },
-    {
       "id": 2,
       "title": "Pacientes",
       "link": "/psychologist/patients",
