@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-import ReactQuill from "react-quill";
 import "./PsychologistView.css";
 
 import api from "../../../Services/api";

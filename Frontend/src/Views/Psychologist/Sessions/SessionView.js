@@ -1,7 +1,7 @@
 import React from "react";
 import "./SessionView.css";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 import Table from "@mui/material/Table";
@@ -18,7 +18,6 @@ import ReactQuill from "react-quill";
 import api from "../../../Services/api";
 
 function SessionView() {
-  const navigate = useNavigate();
   const [changingHeader] = useState(false);
   const [session, setSession] = useState({});
   const { session_id } = useParams();
